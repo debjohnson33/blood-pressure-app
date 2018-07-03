@@ -14,7 +14,11 @@ class MeasurementsPage extends Component {
 		return (
 			<div>
 				<h1>Measurements Go Here!</h1>
-				{this.props.systolic_bp}
+				{this.props.measurements.map(measurement => 
+					<div>
+					<p key={measurement.id}>{measurement.id}</p>
+					<p>{measurement.systolic_bp} / {measurement.diastolic_bp}</p></div>
+				)}
 			</div>
 		)
 	}
