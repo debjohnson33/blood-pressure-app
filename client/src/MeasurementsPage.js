@@ -7,12 +7,14 @@ class MeasurementsPage extends Component {
 
 	componentDidMount() {
 		this.props.fetchMeasurements();
+		console.log(this.props);
 	}
 
 	render() {
 		return (
 			<div>
 				<h1>Measurements Go Here!</h1>
+				{this.props.systolic_bp}
 			</div>
 		)
 	}
