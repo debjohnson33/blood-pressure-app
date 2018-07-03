@@ -11,7 +11,7 @@ export const measurementsFetchDataSuccess = measurements => {
 
 export const fetchMeasurements = () => {
 	return dispatch => {
-		return fetch(`${API_URL}/measurements`)
+		return fetch(`${API_URL}/users/1/measurements`)
 			.then(response => response.json())
 			.then(measurements => {
 				dispatch(measurementsFetchDataSuccess(measurements));

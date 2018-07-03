@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchMeasurements } from './actions/measurements';
 
 class MeasurementsPage extends Component {
 
@@ -15,4 +18,10 @@ class MeasurementsPage extends Component {
 	}
 }
 
-export default MeasurementsPage;
+const mapStateToProps = (state) => {
+	return ({
+		measurements: state.measurements
+	});
+};
+
+export default connect(mapStateToProps, { fetchMeasurements })(MeasurementsPage);
