@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class MeasurementsPage extends Component {
 
+	componentDidMount() {
+		this.props.fetchMeasurements();
+	}
+
 	render() {
 		return (
 			<div>
