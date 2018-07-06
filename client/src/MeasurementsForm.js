@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Datetime from 'react-datetime';
 
 class MeasurementsForm extends Component {
 
@@ -25,7 +26,7 @@ class MeasurementsForm extends Component {
 				<br />
 				<div>
 					<label htmlFor='dateTime'>Day & Time:</label>
-					<input name='dateTime' placeholder="Date and Time Taken"/>
+					<Datetime />
 				</div>
 				<br />
 				<div>
