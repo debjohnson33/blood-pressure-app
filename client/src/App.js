@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Home';
 import MeasurementsPage from './MeasurementsPage';
 import MeasurementsForm from './MeasurementsForm';
+import LoginComponent from './LoginComponent';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <div className="App">
             <Switch>
               <Route exact path='/' component={Home}/>
+              <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/measurements' component={MeasurementsPage}/>
               <Route exact path='/measurements/new' component={MeasurementsForm}/>            
             </Switch>          
