@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
 import { updateMeasurementsFormData } from './actions/measurementsForm';
+import { createMeasurement } from './actions/measurements';
 
 import './react-datetime.css';
 
@@ -10,7 +11,7 @@ class MeasurementsForm extends Component {
 	constructor() {
 		super();
 		this.state = {selectedValue: ''};
-		//this.handleDate = this.handleDate.bind(this);
+		this.handleDate = this.handleDate.bind(this);
 	}
 
 	handleOnChange = event => {
@@ -23,16 +24,20 @@ class MeasurementsForm extends Component {
 
 	handleDate(date) {
 		console.log(date._d);
+		const currentMeasurementsFormData = Object.assign({}, this.props.measurementsFormData, {
+			date_time : date._d
+		})
+		this.props.updateMeasurementsFormData(currentMeasurementsFormData)
 	}
 
 	handleOnSubmit = event => {
 		event.preventDefault();
-		console.log(event.target);
+		this.props.createMeasurement(this.props.measurementsFormData);
 	}
 
 	render() {
 
-		const  { systolic_bp, diastolic_bp, pulse, dateTime, notes } = this.props.measurementsFormData;
+		const  { systolic_bp, diastolic_bp, pulse, date_time, notes } = this.props.measurementsFormData;
 
 		return (
 			<div>
@@ -96,4 +101,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { updateMeasurementsFormData })(MeasurementsForm);
+export default connect(mapStateToProps, { 
+	updateMeasurementsFormData,
+	createMeasurement
+})(MeasurementsForm);

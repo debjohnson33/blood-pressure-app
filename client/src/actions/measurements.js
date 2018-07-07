@@ -9,6 +9,13 @@ export const measurementsFetchDataSuccess = measurements => {
 	}
 }
 
+export const addMeasurements = measurement => {
+	return {
+		type: 'ADD_MEASUREMENTS_SUCCESS',
+		measurement: measurement
+	}
+}
+
 export const fetchMeasurements = () => {
 	return dispatch => {
 		return fetch(`${API_URL}/users/1/measurements`)
@@ -19,3 +26,19 @@ export const fetchMeasurements = () => {
 			.catch(error => console.log(error));
 	};
 };
+
+export const createMeasurement = measurement => {
+	return dispatch => {
+		return fetch(`${API_URL}/users/1/measurement`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ measurement: measurement })
+		})
+			.then(response => response.json())
+			.then(measurements => {
+				dispatch(addMeasurements(measurement))
+			})
+	}
+}
