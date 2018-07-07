@@ -2,9 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
 import measurementsReducer from './reducers/measurementsReducer';
+import measurementsFormData from './reducers/measurementsFormData';
 
 const reducers = combineReducers({
-	measurements: measurementsReducer
+	measurements: measurementsReducer,
+	measurementsFormData
 })
 
 const middleware = [thunk];
