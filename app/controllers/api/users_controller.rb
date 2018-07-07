@@ -13,23 +13,23 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(user_params)
-		if @user.save
-			render json: @user, status: 201
+		user = User.new(user_params)
+		if user.save
+			render json: user, status: 201
 		else
 			render_errors_in_json
 		end
 	end
 
 	def show
-		if @user
-			render json: @user, status: 200
+		if user
+			render json: user, status: 200
 		end
 	end
 
 	def update
-		if @user.update(user_params)
-			render json: @user, status: 200
+		if user.update(user_params)
+			render json: user, status: 200
 		else
 			render_errors_in_json
 		end
@@ -47,8 +47,8 @@ class Api::UsersController < ApplicationController
 	end
 
 	def set_user
-		@user = User.find_by(id: params[:id])
-		if !@user
+		user = User.find_by(id: params[:id])
+		if !user
 			render json: {
 				errors: {
 					messages: { user: "can't be found"}
