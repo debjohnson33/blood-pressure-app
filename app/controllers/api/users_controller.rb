@@ -14,7 +14,6 @@ class Api::UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		byebug
 		if @user.save
 			render json: @user, status: 201
 		else
@@ -44,7 +43,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(@user).permit(:email, :password)
+		params.permit(:email, :password)
 	end
 
 	def set_user
