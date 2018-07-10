@@ -13,9 +13,10 @@ class Api::UsersController < ApplicationController
 	end
 
 	def create
-		user = User.new(user_params)
-		if user.save
-			render json: user, status: 201
+		@user = User.new(user_params)
+		byebug
+		if @user.save
+			render json: @user, status: 201
 		else
 			render_errors_in_json
 		end
@@ -43,7 +44,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:email, :password_digest)
+		params.require(@user).permit(:email, :password)
 	end
 
 	def set_user
