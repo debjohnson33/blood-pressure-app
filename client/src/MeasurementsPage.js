@@ -6,8 +6,11 @@ import { fetchMeasurements } from './actions/measurements';
 class MeasurementsPage extends Component {
 
 	componentDidMount() {
+		let jwt = window.localStorage.getItem('jwt');
+		console.log(jwt);
 		this.props.fetchMeasurements();
 		console.log(this.props);
+
 	}
 
 	render() {
