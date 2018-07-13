@@ -4,8 +4,6 @@ class LoginComponent extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		// console.log(this.inputNode1.value);
-		// console.log(this.inputNode2.value);
 
 		var formData = new FormData();
 

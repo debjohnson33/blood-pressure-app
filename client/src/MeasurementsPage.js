@@ -15,16 +15,13 @@ class MeasurementsPage extends Component {
 		let jwt = window.localStorage.getItem('jwt');
 		let result = jwtDecode(jwt);
 		this.setState({email: result.email})
-		console.log(result);
 		this.props.fetchMeasurements();
-		console.log(this.props);
-
 	}
 
 	render() {
 		return (
 			<div>
-				<h1>Measurements Go Here! {this.state.email}</h1>
+				<h1>Measurements for {this.state.email}</h1>
 				{this.props.measurements.map(measurement => 
 					<div>
 					<p key={measurement.id}>{measurement.id}</p>
