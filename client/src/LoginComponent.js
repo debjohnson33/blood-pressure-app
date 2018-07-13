@@ -4,14 +4,6 @@ import { updateLoginFormData } from './actions/loginForm';
 
 class LoginComponent extends Component {
 
-	handleOnChange = event => {
-		const { name, value } = event.target;
-		const currentLoginFormData = Object.assign({}, this.props.loginFormData, {
-			[name]: value
-		})
-		this.props.updateLoginFormData(currentLoginFormData);
-	}
-
 	handleSubmit = event => {
 		event.preventDefault();
 
