@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateLoginFormData } from './actions/loginForm';
 
 class LoginComponent extends Component {
 
+	handleOnChange = event => {
+		const { name, value } = event.target;
+		const currentLoginFormData = Object.assign({}, this.props.loginFormData, {
+			[name]: value
+		})
+		this.props.updateLoginFormData(currentLoginFormData)
+	}
+
 	handleSubmit = event => {
 		event.preventDefault();
-		// console.log(this.inputNode1.value);
-		// console.log(this.inputNode2.value);
 
 		var formData = new FormData();
 
@@ -50,4 +58,12 @@ class LoginComponent extends Component {
 	}
 }
 
-export default LoginComponent;
+const mapStateToProps = state => {
+	return {
+		loginFormData: state.loginFormData
+	}
+}
+
+export default connect(mapStateToProps, { 
+	updateLoginFormData
+})(LoginComponent);
