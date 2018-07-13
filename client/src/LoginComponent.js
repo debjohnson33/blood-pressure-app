@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateLoginFormData } from './actions/loginForm';
 
 class LoginComponent extends Component {
+
+	handleOnChange = event => {
+		const { name, value } = event.target;
+		const currentLoginFormData = Object.assign({}, this.props.loginFormData, {
+			[name]: value
+		})
+		this.props.updateLoginFormData(currentLoginFormData);
+	}
 
 	handleSubmit = event => {
 		event.preventDefault();
@@ -29,6 +39,7 @@ class LoginComponent extends Component {
 		            name="email"
 		            id="email"
 		            type="email"
+		            onChange={this.handleOnChange}
 		            ref={node => {this.inputNode1 = node}}
 		          />
 		          <br /><br />
@@ -38,6 +49,7 @@ class LoginComponent extends Component {
 		            name="password"
 		            id="password"
 		            type="password"
+		            onChange={this.handleOnChange}
 		            ref={node => {this.inputNode2 = node}}
 		          />
 		          <br />
@@ -48,4 +60,12 @@ class LoginComponent extends Component {
 	}
 }
 
-export default LoginComponent;
+const mapStateToProps = state => {
+	return {
+		loginFormData: state.loginFormData
+	}
+}
+
+export default connect(mapStateToProps, { 
+	updateLoginFormData
+})(LoginComponent);
