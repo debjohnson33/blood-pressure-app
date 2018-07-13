@@ -9,7 +9,7 @@ class LoginComponent extends Component {
 		const currentLoginFormData = Object.assign({}, this.props.loginFormData, {
 			[name]: value
 		})
-		this.props.updateLoginFormData(currentLoginFormData)
+		this.props.updateLoginFormData(currentLoginFormData);
 	}
 
 	handleSubmit = event => {
@@ -39,6 +39,7 @@ class LoginComponent extends Component {
 		            name="email"
 		            id="email"
 		            type="email"
+		            onChange={this.handleOnChange}
 		            ref={node => {this.inputNode1 = node}}
 		          />
 		          <br /><br />
@@ -48,6 +49,7 @@ class LoginComponent extends Component {
 		            name="password"
 		            id="password"
 		            type="password"
+		            onChange={this.handleOnChange}
 		            ref={node => {this.inputNode2 = node}}
 		          />
 		          <br />

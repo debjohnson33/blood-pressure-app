@@ -5,7 +5,7 @@ const initialState = {
 export default (state = initialState, action) => {
 
 	switch(action.type) {
-		case 'UPDATED_DATA':
+		case 'UPDATED_LOGIN':
 			return action.loginFormData
 		default:
 			return state;
