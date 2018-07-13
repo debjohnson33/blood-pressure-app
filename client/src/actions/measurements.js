@@ -16,9 +16,9 @@ export const addMeasurements = measurement => {
 	}
 }
 
-export const fetchMeasurements = () => {
+export const fetchMeasurements = (userId) => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/1/measurements`)
+		return fetch(`${API_URL}/users/:userId/measurements`)
 			.then(response => response.json())
 			.then(measurements => {
 				dispatch(measurementsFetchDataSuccess(measurements));
@@ -27,9 +27,9 @@ export const fetchMeasurements = () => {
 	};
 };
 
-export const createMeasurement = measurement => {
+export const createMeasurement = (user_id, measurement) => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/1/measurement`, {
+		return fetch(`${API_URL}/users/:user_id/measurements`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export const createMeasurement = measurement => {
 			body: JSON.stringify({ measurement: measurement })
 		})
 			.then(response => response.json())
-			.then(measurements => {
+			.then(measurement => {
 				dispatch(addMeasurements(measurement))
 			})
 	}

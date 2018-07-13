@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
+import jwtDecode from 'jwt-decode';
+
 import { updateMeasurementsFormData } from './actions/measurementsForm';
 import { createMeasurement } from './actions/measurements';
 
@@ -10,8 +12,15 @@ class MeasurementsForm extends Component {
 
 	constructor() {
 		super();
-		this.state = {selectedValue: ''};
+		this.state = {email: undefined, userId: undefined};
 		this.handleDate = this.handleDate.bind(this);
+	}
+
+	componentDidMount() {
+		let jwt = window.localStorage.getItem('jwt');
+		let result = jwtDecode(jwt);
+		console.log(result);
+		this.setState({email: result.email, userId: result.id})
 	}
 
 	handleOnChange = event => {
@@ -27,7 +36,7 @@ class MeasurementsForm extends Component {
 		const currentMeasurementsFormData = Object.assign({}, this.props.measurementsFormData, {
 			date_time : date._d
 		})
-		this.props.updateMeasurementsFormData(currentMeasurementsFormData)
+		this.props.updateMeasurementsFormData(this.state.userId, currentMeasurementsFormData)
 	}
 
 	handleOnSubmit = event => {
@@ -41,7 +50,7 @@ class MeasurementsForm extends Component {
 
 		return (
 			<div>
-			<h4>Add Your Blood Pressure and Pulse:</h4>
+			<h4>Add Your Blood Pressure and Pulse: </h4>
 			<form onSubmit={this.handleOnSubmit}>
 				<div>
 					<label htmlFor='systolic'>Systolic Blood Pressure:</label>

@@ -8,14 +8,15 @@ class MeasurementsPage extends Component {
 
 	constructor() {
 		super();
-		this.state = {email: undefined};
+		this.state = {email: undefined, userId: undefined};
 	}
 
 	componentDidMount() {
 		let jwt = window.localStorage.getItem('jwt');
 		let result = jwtDecode(jwt);
-		this.setState({email: result.email})
-		this.props.fetchMeasurements();
+		console.log(result);
+		this.setState({email: result.email, userId: result.id})
+		this.props.fetchMeasurements(this.state.userId);
 	}
 
 	render() {
