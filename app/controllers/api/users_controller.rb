@@ -1,6 +1,5 @@
 class Api::UsersController < ApplicationController
 	
-	#before_action :authenticate_user
 	before_action :set_user, only: [:show, :update, :destroy]
 
 	def current
@@ -22,14 +21,14 @@ class Api::UsersController < ApplicationController
 	end
 
 	def show
-		if user
-			render json: user, status: 200
+		if @user
+			render json: @user, status: 200
 		end
 	end
 
 	def update
-		if user.update(user_params)
-			render json: user, status: 200
+		if @user.update(user_params)
+			render json: @user, status: 200
 		else
 			render_errors_in_json
 		end
@@ -47,8 +46,8 @@ class Api::UsersController < ApplicationController
 	end
 
 	def set_user
-		user = User.find_by(id: params[:id])
-		if !user
+		@user = User.find_by(id: params[:id])
+		if !@user
 			render json: {
 				errors: {
 					messages: { user: "can't be found"}
