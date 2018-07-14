@@ -34,14 +34,14 @@ class MeasurementsForm extends Component {
 	handleDate(date) {
 		console.log(date._d);
 		const currentMeasurementsFormData = Object.assign({}, this.props.measurementsFormData, {
-			date_time : date._d
+			date_time: date._d
 		})
-		this.props.updateMeasurementsFormData(this.state.userId, currentMeasurementsFormData)
+		this.props.updateMeasurementsFormData(currentMeasurementsFormData)
 	}
 
 	handleOnSubmit = event => {
 		event.preventDefault();
-		this.props.createMeasurement(this.props.measurementsFormData);
+		this.props.createMeasurement(this.state.userId, this.props.measurementsFormData);
 	}
 
 	render() {
@@ -84,7 +84,7 @@ class MeasurementsForm extends Component {
 				<br />
 				<div>
 					<label htmlFor='dateTime'>Day & Time:</label>
-					<Datetime value={this.state.selectedValue} onChange={this.handleDate} />
+					<Datetime onChange={this.handleDate} />
 				</div>
 				<br />
 				<div>
