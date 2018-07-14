@@ -29,7 +29,7 @@ export const fetchMeasurements = (userId) => {
 
 export const createMeasurement = (user_id, measurement) => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/:user_id/measurements`, {
+		return fetch(`${API_URL}/users/${user_id}/measurements`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

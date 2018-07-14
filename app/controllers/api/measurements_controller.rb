@@ -36,7 +36,7 @@ class Api::MeasurementsController < ApplicationController
 	end
 
 	def measurement_params
-		params.require(:measurement).permit(:systolic_bp, :diastolic_bp, :pulse, :date_time, :notes)
+		params.require(:measurement).permit(:user_id, :systolic_bp, :diastolic_bp, :pulse, :date_time, :notes)
 	end
 
 	def render_errors_in_json

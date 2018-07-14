@@ -14,7 +14,7 @@ class LoginComponent extends Component {
 			method: 'POST', 
 			body: formData
 		}).then(res => res.json()).then(res => (window.localStorage.setItem('jwt', res.jwt)))		
-			.then(() => this.props.history.push('/measurements'))
+			.then((res) => this.props.history.push('/users/' + res.jwt.id + '/measurements'))
 			.catch(function(error) {console.log('There is an error: ', error.message)});
 	}
 
