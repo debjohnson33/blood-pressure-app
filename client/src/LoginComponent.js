@@ -16,9 +16,10 @@ class LoginComponent extends Component {
 			body: formData
 		}).then(res => res.json()).then(res => (window.localStorage.setItem('jwt', res.jwt)))		
 			.then(() => {
-				let token = window.localStorage.getItem('jwt');
-				let result = jwtDecode(token.id);
-				this.props.history.push('/users/' + result.jwt.id + '/measurements')
+				 // let token = window.localStorage.getItem('jwt');
+				 // let result = jwtDecode(token.id);
+				 // console.log(result);
+				 this.props.history.push('/')
 		})
 			.catch(function(error) {console.log('There is an error: ', error)});
 	}

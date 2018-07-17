@@ -17,7 +17,7 @@ class SignupComponent extends Component {
 		})
 			.then(response => response.json())
 			.then(response => console.log(response))
-				//this.props.history.push(`${API_URL}/users/${user_id}/measurements`)
+				this.props.history.push(`/login`);
 	}
 
 	render() {
