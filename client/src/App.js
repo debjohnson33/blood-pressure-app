@@ -6,6 +6,7 @@ import Home from './Home';
 import MeasurementsPage from './MeasurementsPage';
 import MeasurementsForm from './MeasurementsForm';
 import LoginComponent from './LoginComponent';
+import SignupComponent from './SignupComponent';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route exact path='/login' component={LoginComponent}/>
+              <Route exact path='/signup' component={SignupComponent}/> 
               <Route exact path='/users/:id/measurements' component={MeasurementsPage}/>
               <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/>            
             </Switch>          

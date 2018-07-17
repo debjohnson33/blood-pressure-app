@@ -16,11 +16,11 @@ class LoginComponent extends Component {
 			body: formData
 		}).then(res => res.json()).then(res => (window.localStorage.setItem('jwt', res.jwt)))		
 			.then(() => {
-				let jwt = window.localStorage.getItem('jwt');
-				let result = jwtDecode(jwt.id);
+				let token = window.localStorage.getItem('jwt');
+				let result = jwtDecode(token.id);
 				this.props.history.push('/users/' + result.jwt.id + '/measurements')
 		})
-			.catch(function(error) {console.log('There is an error: ', error.message)});
+			.catch(function(error) {console.log('There is an error: ', error)});
 	}
 
 	render() {
