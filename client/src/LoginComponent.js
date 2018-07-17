@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import jwtDecode from 'jwt-decode';
 
 class LoginComponent extends Component {
 
@@ -14,7 +15,11 @@ class LoginComponent extends Component {
 			method: 'POST', 
 			body: formData
 		}).then(res => res.json()).then(res => (window.localStorage.setItem('jwt', res.jwt)))		
-			.then((res) => this.props.history.push('/users/' + res.jwt.id + '/measurements'))
+			.then(() => {
+				let jwt = window.localStorage.getItem('jwt');
+				let result = jwtDecode(jwt.id);
+				this.props.history.push('/users/' + result.jwt.id + '/measurements')
+		})
 			.catch(function(error) {console.log('There is an error: ', error.message)});
 	}
 
