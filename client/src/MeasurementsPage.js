@@ -20,14 +20,20 @@ class MeasurementsPage extends Component {
 	}
 
 	render() {
+			const { measurements } = this.props;
+			//const userId = parseInt(this.state.userId, 10);
 		return (
 			<div>
 				<h1>Measurements for {this.state.email}</h1>
-				{this.props.measurements.map(measurement => 
+				<div>
+				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
 					<div>
-					<p key={measurement.id}>{measurement.id}</p>
-					<p>{measurement.systolic_bp} / {measurement.diastolic_bp}</p></div>
-				)}
+						<p key={measurementIndex}>{measurementName.id}</p>
+						<p> {measurements.systolic_bp} </p>
+					</div>
+				})
+				} 
+				</div>
 			</div>
 		)
 	}
