@@ -16,11 +16,13 @@ class MeasurementsPage extends Component {
 		let result = jwtDecode(jwt);
 		console.log(result);
 		this.setState({email: result.email, userId: result.id})
-		this.props.fetchMeasurements(this.state.userId);
+		console.log(result.id)
+		this.props.fetchMeasurements(result.id);
 	}
 
 	render() {
 			const { measurements } = this.props;
+			console.log(measurements);
 			//const userId = parseInt(this.state.userId, 10);
 		return (
 			<div>
@@ -28,8 +30,8 @@ class MeasurementsPage extends Component {
 				<div>
 				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
 					<div>
-						<p key={measurementIndex}>{measurementName.id}</p>
-						<p> {measurements.systolic_bp} </p>
+						<p key={measurementIndex}>{measurementName}</p>
+						<p> {measurements[measurementName]} </p>
 					</div>
 				})
 				} 
