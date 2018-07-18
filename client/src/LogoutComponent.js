@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 
 class LogoutComponent extends Component {
 
-	handleSubmit = event => {
-		event.preventDefault();
-		window.localStorage.clear('jwt');
-		this.props.history.push(`/login`);
-	}
+
 
 	render() {
 		return (
 			<div>
-		        <button type="submit">Logout</button>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		        <h1>You are now Logged Out</h1>
           	</div>
 		)
 	}
