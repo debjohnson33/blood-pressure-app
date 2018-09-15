@@ -1,21 +1,14 @@
+require 'auth'
 class Api::TokensController < ApplicationController
 	def create
 		user = User.find_by(email: params[:email])
 		if user&.authenticate(params[:password])
-			render json: {
-				jwt: encode_token({id: user.id, email: user.email})
-			}
+			
+			token = Auth.create_token({id: user.id, email: user.email})
+			returned_user = Auth.decode_token(token)
+			render json: {id: user.id, email: user.email}, status: 200
 		else
-			head :not_found
+			render json: {errors: "Email or Password is incorrect"}, status: 500
 		end
 	end
-
-
-	private
-	def encode_token(payload={})
-		exp = 24.hours.from_now
-		payload[:exp] = exp.to_i
-		JWT.encode(payload, Rails.application.secrets.secret_key_base)
-	end
-
 end
