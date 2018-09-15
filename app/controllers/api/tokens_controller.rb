@@ -1,6 +1,6 @@
 require 'auth'
 class Api::TokensController < ApplicationController
-	def create
+	def login
 		user = User.find_by(email: params[:email])
 		if user&.authenticate(params[:password])
 			
@@ -10,5 +10,9 @@ class Api::TokensController < ApplicationController
 		else
 			render json: {errors: "Email or Password is incorrect"}, status: 500
 		end
+	end
+
+	def logout
+
 	end
 end
