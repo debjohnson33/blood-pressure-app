@@ -9,9 +9,42 @@ const authSuccess = (user) => {
     }
 }
 
+const userLoggedIn = (user) => {
+    return {
+        type: 'LOGGEDIN',
+        user: user
+    }
+}
+
+const authFailure = (errors) => {
+    return {
+        type: 'AUTHENTICATION_FAILURE',
+        errors: errors.message
+    }
+}
+
+export const signupUser = (user) => {
+    return dispatch => {
+        return fetch(`${API_URL}/signup`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({user: user})
+        })
+            .then(res => res.json())
+            .then(response => {
+                const token = response["token"];
+                localStorage.setItem('Token', token);
+                dispatch(authSuccess(response))
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+}
+
 export const authenticate = (credentials) => {
     return dispatch => {
-        return fetch(`${API_URL}/create`, {
+        return fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,8 +63,15 @@ export const authenticate = (credentials) => {
             })
                 .catch( error => {
                     console.log(error);
-                    //dispatch(authFailure(error));
+                    dispatch(authFailure(error));
                     localStorage.clear()
                 })
+    }
+}
+
+export const logout = () => {
+    return dispatch => {
+        localStorage.clear();
+        return dispatch({type: 'LOGGEDOUT'});
     }
 }
