@@ -1,36 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signupUser } from '../actions/auth_actions';
 
 class SignupComponent extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			email: "",
+			password: "",
+			user: {}
+		}
+	}
+
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
 
 	handleSubmit = event => {
 		event.preventDefault();
-
-		const email = event.target.email.value;
-		const password = event.target.password.value;
-
-		fetch(`http://localhost:3001/api/users/create`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email: email, password: password })
-		})
-			.then(response => response.json())
-			.then(response => console.log(response))
-				this.props.history.push(`/login`);
+		this.props.signupUser(this.state);
+		this.props.history.replace('/login');
 	}
 
 	render() {
 		return (
 			<div>
 			<h2>Sign Up:</h2>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={(event) => this.handleSubmit(event)}>
 		          <label htmlFor="email">Email: </label>
 		          <br />
 		          <input
 		            name="email"
 		            id="email"
-		            type="email"
+					type="email"
+					onChange={(event) => this.handleChange(event)}
+					value={this.state.email}
 		          />
 		          <br /><br />
 		          <label htmlFor="password">Password:</label>
@@ -38,7 +45,9 @@ class SignupComponent extends Component {
 		          <input
 		            name="password"
 		            id="password"
-		            type="password"
+					type="password"
+					onChange={(event) => this.handleChange(event)}
+					value={this.state.password}
 		          />
 		          <br />
 		          <button type="submit">Sign Up</button>
@@ -48,4 +57,10 @@ class SignupComponent extends Component {
 	}
 }
 
-export default SignupComponent;
+const mapStateToProps = (state) => {
+	return ({
+		user: state.auth.user
+	})
+}
+
+export default connect(mapStateToProps, {signupUser})(SignupComponent);
