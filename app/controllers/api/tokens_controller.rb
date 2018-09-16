@@ -12,6 +12,20 @@ class Api::TokensController < ApplicationController
 		end
 	end
 
+	def find_user
+		returned_user = Auth.decode_token(params[:token])
+		if returned_user
+			user_hash = returned_user[0]
+
+			render json: {
+				email: user_hash["user"]["email"]
+				id: user_hash["user"]["id"]
+			}, status: 200
+		else
+			render json: {errors: "Users not found"}, status: 500
+		end
+	end
+
 	def logout
 
 	end
