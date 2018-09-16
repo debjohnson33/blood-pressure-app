@@ -9,7 +9,7 @@ class SignupComponent extends Component {
 		this.state = {
 			email: "",
 			password: "",
-			//user: {}
+			user: {}
 		}
 	}
 
@@ -59,9 +59,9 @@ class SignupComponent extends Component {
 
 const mapStateToProps = (state) => {
 	return ({
-		email: state.email,
-		password: state.password
-		//user: state.auth.user
+		//email: state.email,
+		//password: state.password
+		user: state.auth.user
 	})
 }
 
