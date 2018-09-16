@@ -18,7 +18,7 @@ class Api::TokensController < ApplicationController
 			user_hash = returned_user[0]
 
 			render json: {
-				email: user_hash["user"]["email"]
+				email: user_hash["user"]["email"],
 				id: user_hash["user"]["id"]
 			}, status: 200
 		else

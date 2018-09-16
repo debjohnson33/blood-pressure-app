@@ -8,11 +8,12 @@ class LoginComponent extends Component {
 
 		this.state = {
 			email: "",
-			password: ""
+			password: "",
+			user: {}
 		}
 	}
 
-	handleChange(event) {
+	handleChange = event => {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
@@ -44,9 +45,10 @@ class LoginComponent extends Component {
 		          <input
 		            name="email"
 		            id="email"
-		            type="email"
-		            onChange={(event) => this.handleChange(event)}
-					value={this.state.email}
+					type="email"
+					placeholder="Please enter your email"
+		            onChange={this.handleChange}
+					value={this.props.email}
 		          />
 		          <br /><br />
 		          <label htmlFor="password">Password:</label>
@@ -54,9 +56,10 @@ class LoginComponent extends Component {
 		          <input
 		            name="password"
 		            id="password"
-		            type="password"
-		            onChange={(event) => this.handleChange(event)}
-					value={this.state.email}
+					type="password"
+					placeholder="Please enter your password"
+		            onChange={this.handleChange}
+					value={this.props.email}
 		          />
 		          <br />
 		          <button type="submit">Log In</button>
@@ -68,9 +71,9 @@ class LoginComponent extends Component {
 
 const mapStateToProps = (state) => {
 	return ({
-		email: state.email,
-		password: state.password
-		//user: state.auth.user
+		//email: state.email,
+		//password: state.password
+		user: state.auth.user
 	})
 }
 

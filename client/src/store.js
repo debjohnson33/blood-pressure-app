@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import measurementsReducer from './reducers/measurementsReducer';
 import measurementsFormData from './reducers/measurementsFormData';
+import auth_reducer from './reducers/auth_reducer';
 
 const reducers = combineReducers({
+	auth: auth_reducer,
 	measurements: measurementsReducer,
-	measurementsFormData,
+	measurementsFormData
 })
 
 const middleware = [thunk];
