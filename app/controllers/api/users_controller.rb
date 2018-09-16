@@ -12,12 +12,12 @@ class Api::UsersController < ApplicationController
 		render json: users, status: 200
 	end
 
-	def create
+	def signup
 		@user = User.new(user_params)
 		if @user.save
-			token = Auth.create_token({id: user.id, email: user.email})
+			token = Auth.create_token({id: @user.id, email: @user.email})
 			returned_user = Auth.decode_token(token)
-			render json: {id: user.id, email: user.email}, status: 201
+			render json: {id: @user.id, email: @user.email}, status: 201
 		else
 			render_errors_in_json
 		end
@@ -48,7 +48,7 @@ class Api::UsersController < ApplicationController
 	private
 
 	def user_params
-		params.permit(:email, :password)
+		params.require(:user).permit(:email, :password)
 	end
 
 	def set_user

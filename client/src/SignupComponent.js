@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signupUser } from '../actions/auth_actions';
+import { signupUser } from './actions/auth_actions';
 
 class SignupComponent extends Component {
 	constructor(props) {
@@ -9,7 +9,7 @@ class SignupComponent extends Component {
 		this.state = {
 			email: "",
 			password: "",
-			user: {}
+			//user: {}
 		}
 	}
 
@@ -59,7 +59,9 @@ class SignupComponent extends Component {
 
 const mapStateToProps = (state) => {
 	return ({
-		user: state.auth.user
+		email: state.email,
+		password: state.password
+		//user: state.auth.user
 	})
 }
 
