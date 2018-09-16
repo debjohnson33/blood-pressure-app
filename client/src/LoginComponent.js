@@ -13,12 +13,12 @@ class LoginComponent extends Component {
 		}
 	}
 
-	handleChange = event => {
+	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
 	}
-	handleSubmit = event => {
+	handleSubmit(event) {
 		event.preventDefault();
 
 		this.props.authenticate(this.state)
@@ -47,7 +47,7 @@ class LoginComponent extends Component {
 		            id="email"
 					type="email"
 					placeholder="Please enter your email"
-		            onChange={this.handleChange}
+		            onChange={(event) => this.handleChange(event)}
 					value={this.props.email}
 		          />
 		          <br /><br />
@@ -58,7 +58,7 @@ class LoginComponent extends Component {
 		            id="password"
 					type="password"
 					placeholder="Please enter your password"
-		            onChange={this.handleChange}
+		            onChange={(event) => this.handleChange(event)}
 					value={this.props.email}
 		          />
 		          <br />
