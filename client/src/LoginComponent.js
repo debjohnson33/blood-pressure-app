@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
-import jwtDecode from 'jwt-decode';
+import { connect } from 'react-redux';
+import { authenticate, getUser } from './actions/auth_actions';
 
 class LoginComponent extends Component {
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			email: "",
+			password: ""
+		}
+	}
+
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
 	handleSubmit = event => {
 		event.preventDefault();
 
-		var formData = new FormData();
-
-		formData.append("email", this.inputNode1.value);
-		formData.append("password", this.inputNode2.value);
-
-		fetch("http://localhost:3001/api/tokens", {
-			method: 'POST', 
-			body: formData
-		}).then(res => res.json()).then(res => (window.localStorage.setItem('jwt', res.jwt)))		
+		this.props.authenticate(this.state)
 			.then(() => {
-				 // let token = window.localStorage.getItem('jwt');
-				 // let result = jwtDecode(token.id);
-				 // console.log(result);
-				 this.props.history.push('/')
+				if (this.props.user) {
+					this.props.history.push("/")
+				} else {
+					window.alert("Sorry, email or password is incorrect. Try again.")
+				}
+			})
+		this.setState({
+			email: "",
+			password: ""
 		})
-			.catch(function(error) {console.log('There is an error: ', error)});
 	}
 
 	render() {
 		return (
 			<div>
 			<h2>Login:</h2>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={(event) => this.handleSubmit(event)}>
 		          <label htmlFor="email">Email: </label>
 		          <br />
 		          <input
 		            name="email"
 		            id="email"
 		            type="email"
-		            ref={node => {this.inputNode1 = node}}
+		            onChange={(event) => this.handleChange(event)}
+					value={this.state.email}
 		          />
 		          <br /><br />
 		          <label htmlFor="password">Password:</label>
@@ -44,7 +55,8 @@ class LoginComponent extends Component {
 		            name="password"
 		            id="password"
 		            type="password"
-		            ref={node => {this.inputNode2 = node}}
+		            onChange={(event) => this.handleChange(event)}
+					value={this.state.email}
 		          />
 		          <br />
 		          <button type="submit">Log In</button>
@@ -54,4 +66,12 @@ class LoginComponent extends Component {
 	}
 }
 
-export default LoginComponent;
+const mapStateToProps = (state) => {
+	return ({
+		email: state.email,
+		password: state.password
+		//user: state.auth.user
+	})
+}
+
+export default connect(mapStateToProps, {authenticate, getUser})(LoginComponent);
