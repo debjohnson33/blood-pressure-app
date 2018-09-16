@@ -69,6 +69,31 @@ export const authenticate = (credentials) => {
     }
 }
 
+export const getUser = (token) => {
+    return dispatch => {
+        return fetch(`${API_URL}/find_user`, {
+            method: 'POST',
+            headers: {
+                'Authorization': localStorage.Token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token: token})
+        })
+            .then((res) => res.json())
+            .then((response) => {
+                if (response.errors) {
+                    throw Error(response.errors);
+                } else {
+                    dispatch(userLoggedIn(response))
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                localStorage.clear()
+            })
+    }
+}
+
 export const logout = () => {
     return dispatch => {
         localStorage.clear();
