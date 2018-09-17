@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 
 import Home from './Home';
@@ -8,9 +9,18 @@ import MeasurementsForm from './MeasurementsForm';
 import LoginComponent from './LoginComponent';
 import SignupComponent from './SignupComponent';
 import LogoutComponent from './LogoutComponent';
+import { getUser } from './actions/auth_actions';
 import NavBar from './NavBar';
 
 class App extends Component {
+
+  componentDidMount() {
+    const token = localStorage.token;
+    
+    if (token) {
+      this.props.getUser(token)
+    }
+  }
 
   render() {
     return (
@@ -31,4 +41,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth,
+    authenticated: state.auth.authenticated
+  }
+}
+export default connect(mapStateToProps, { getUser })(App);
