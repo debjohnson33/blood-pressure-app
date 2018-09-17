@@ -38,6 +38,8 @@ export const signupUser = (user) => {
             })
             .catch(error => {
                 console.log(error);
+                dispatch(authFailure(error));
+                localStorage.clear();
             })
     }
 }

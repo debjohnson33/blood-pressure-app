@@ -27,7 +27,7 @@ export default (state = {
                 email: "",
                 authenticating: false,
                 authenticated: false,
-                errors: action.error
+                errors: action.errors
             }
         case 'LOGGEDIN':
             return {
