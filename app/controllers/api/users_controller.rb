@@ -1,11 +1,6 @@
-require 'auth'
 class Api::UsersController < ApplicationController
 	
 	before_action :set_user, only: [:show, :update, :destroy]
-
-	def current
-		render json: current_user.as_json(only: %i(id email))
-	end
 
 	def index
 		users = User.all

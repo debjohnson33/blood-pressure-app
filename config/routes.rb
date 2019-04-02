@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   namespace :api do
     
 		post '/signup' => 'users#signup'
-		post '/login' => 'tokens#login'
+		post 'tokens' => 'tokens#create'
 		get '/logout' => 'users#logout'
-		post '/find_user' => 'tokens#find_user'
+		post '/find_user' => 'users#find_user'
   	resources :users do
   		resources :measurements
   		resources :goals
