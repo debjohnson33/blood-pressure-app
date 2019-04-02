@@ -1,5 +1,5 @@
 require 'auth'
-class Api::TokensController < ApplicationController
+class Api::TokensController < Knock::AuthTokenController
 	def login
 		user = User.find_by(email: params[:email])
 		if user&.authenticate(params[:password])
