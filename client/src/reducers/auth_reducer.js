@@ -2,38 +2,30 @@ export default (state = {
     authenticating: false,
     authenticated: false,
     errors: [],
-    user: {},
-    current_user: ""
+    token: null,
+    currentUser: {}
 }, action) => {
     switch (action.type) {
-        case 'AUTHENTICATE_USER':
+        case 'AUTHENTICATION_REQUEST':
             return {
                 ...state,
-                authenticating: true,
-                authenticated: false,
-                token: action.tokenauthenticate
+                authenticating: true
             }
-        case 'USER_AUTHENTICATED':
+        case 'AUTHENTICATION_SUCCESS':
             return {
                 ...state,
                 authenticated: true,
                 authenticating: false,
-                user: action.user,
-                current_user: action.user
+                token: action.token,
+                currentUser: action.user
             }
         case 'AUTHENTICATION_FAILURE':
             return {
                 token: null,
-                email: "",
+                currentUser: {},
                 authenticating: false,
                 authenticated: false,
-                errors: action.errors
-            }
-        case 'LOGGEDIN':
-            return {
-                ...state,
-                user: action.user,
-                authenticated: true
+                errors: action.errors || []
             }
         case 'LOGGEDOUT':
             return {
@@ -41,7 +33,7 @@ export default (state = {
                 token: null,
                 authenticated: false,
                 authenticating: false,
-                user: {}
+                currentUser: {}
             }
     default:
         return state

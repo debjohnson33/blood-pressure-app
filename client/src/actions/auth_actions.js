@@ -9,9 +9,9 @@ const authSuccess = (user) => {
     }
 }
 
-const userLoggedIn = (user) => {
+const authRequest = () => {
     return {
-        type: 'LOGGEDIN',
+        type: 'AUTHENTICATION_REQUEST',
         user: user
     }
 }
@@ -50,6 +50,7 @@ export const signupUser = (user) => {
 
 export const authenticate = (credentials) => {
     return dispatch => {
+        dispatch(authRequest());
         return fetch(`${API_URL}/tokens`, {
             method: 'POST',
             headers: {
@@ -89,13 +90,7 @@ export const getUser = (credentials) => {
             body: JSON.stringify({user: credentials})
         })
             .then((res) => res.json())
-            .then((response) => {
-                if (response.errors) {
-                    throw Error(response.errors);
-                } else {
-                    dispatch(userLoggedIn(response))
-                }
-            })
+            .then((response) => { return response })
             .catch((error) => {
                 console.log(error)
                 localStorage.clear()
