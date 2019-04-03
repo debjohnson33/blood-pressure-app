@@ -2,17 +2,17 @@ import fetch from 'isomorphic-fetch';
 
 const API_URL = "http://localhost:3001/api";
 
-const authSuccess = (user) => {
+const authSuccess = (user, token) => {
     return {
         type: 'USER_AUTHENTICATED',
-        user: user
+        user: user,
+        token: token
     }
 }
 
 const authRequest = () => {
     return {
-        type: 'AUTHENTICATION_REQUEST',
-        user: user
+        type: 'AUTHENTICATION_REQUEST'
     }
 }
 
