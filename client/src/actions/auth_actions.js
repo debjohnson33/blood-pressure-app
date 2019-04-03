@@ -24,17 +24,21 @@ const authFailure = (errors) => {
 }
 
 export const signupUser = (user) => {
+    const newUser = user;
     return dispatch => {
         return fetch(`${API_URL}/signup`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'},
             body: JSON.stringify({user: user})
         })
             .then(res => res.json())
             .then(response => {
-                const token = response["token"];
-                localStorage.setItem('Token', token);
-                dispatch(authSuccess(response))
+                dispatch(authenticate({
+                    email: newUser.email,
+                    password: newUser.password
+                }))
             })
             .catch(error => {
                 console.log(error);
@@ -46,22 +50,25 @@ export const signupUser = (user) => {
 
 export const authenticate = (credentials) => {
     return dispatch => {
-        return fetch(`${API_URL}/login`, {
+        return fetch(`${API_URL}/tokens`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(credentials)
+            body: JSON.stringify({auth: credentials})
         })
             .then(res => res.json())
             .then((response) => {
                 if (response.errors) {
                     throw Error(response.errors);
                 } else if (response.token) {
-                    const token = response.token;
-                    localStorage.setItem('Token', token);
-                    dispatch(authSuccess(response));
+                    const token = response.jwt;
+                    localStorage.setItem('token', token);
+                    return getUser(credentials)
                 }
+            }).then((user) => {
+                console.log(user)
+                dispatch(authSuccess(user, localStorage.token));
             })
                 .catch( error => {
                     console.log(error);
@@ -71,15 +78,15 @@ export const authenticate = (credentials) => {
     }
 }
 
-export const getUser = (token) => {
+export const getUser = (credentials) => {
     return dispatch => {
         return fetch(`${API_URL}/find_user`, {
             method: 'POST',
             headers: {
-                'Authorization': localStorage.Token,
+                'Authorization': `Bearer ${localStorage.Token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({token: token})
+            body: JSON.stringify({user: credentials})
         })
             .then((res) => res.json())
             .then((response) => {
