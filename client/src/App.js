@@ -43,8 +43,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth,
-    authenticated: state.auth.authenticated
+    //user: state.auth,
+    //authenticated: state.auth.authenticated
   }
 }
 export default connect(mapStateToProps, { getUser })(App);

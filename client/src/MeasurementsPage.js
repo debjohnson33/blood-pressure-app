@@ -12,12 +12,12 @@ class MeasurementsPage extends Component {
 	}
 
 	componentDidMount() {
-		let jwt = window.localStorage.getItem('jwt');
-		let result = jwtDecode(jwt);
-		console.log(result);
-		this.setState({email: result.email, userId: result.id})
-		console.log(result.id)
-		this.props.fetchMeasurements(result.id);
+		// let jwt = window.localStorage.getItem('jwt');
+		// let result = jwtDecode(jwt);
+		// console.log(result);
+		// this.setState({email: result.email, userId: result.id})
+		// console.log(result.id)
+		// this.props.fetchMeasurements(result.id);
 	}
 
 	render() {
@@ -27,7 +27,7 @@ class MeasurementsPage extends Component {
 		return (
 			<div>
 				<h1>Measurements for {this.state.email}</h1>
-				<div>
+				{/* <div>
 				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
 					<div>
 						<p key={measurementIndex}>{measurementName}</p>
@@ -35,7 +35,7 @@ class MeasurementsPage extends Component {
 					</div>
 				})
 				} 
-				</div>
+				</div> */}
 			</div>
 		)
 	}
