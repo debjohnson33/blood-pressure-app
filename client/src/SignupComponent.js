@@ -21,8 +21,13 @@ class SignupComponent extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		this.props.signupUser(this.state);
-		this.props.history.replace('/login');
+		if (this.props.signupUser(this.state)) {
+			this.props.history.replace('/users/:id/measurements');
+			window.alert("Thanks for signing up!")
+		} else {
+			window.alert("We're having issues creating your account")
+		}
+	
 	}
 
 	render() {

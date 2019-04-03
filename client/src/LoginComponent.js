@@ -20,19 +20,12 @@ class LoginComponent extends Component {
 	}
 	handleSubmit(event) {
 		event.preventDefault();
-
-		this.props.authenticate(this.state)
-			.then(() => {
-				if (this.props.user) {
-					this.props.history.push("/")
-				} else {
-					window.alert("Sorry, email or password is incorrect. Try again.")
-				}
-			})
-		this.setState({
-			email: "",
-			password: ""
-		})
+		if (this.props.authenticate(this.state)) {
+			this.props.history.push("/users/:id/measurements")
+			window.alert("You're Logged In!")
+		} else {
+			window.alert("Sorry, email or password is incorrect. Try again.")				
+		}
 	}
 
 	render() {
