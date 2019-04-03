@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class LogoutComponent extends Component {
 
 	componentWillMount() {
-		window.localStorage.clear('jwt');
+		this.props.logout();
+		this.props.history.push(`/home`);
 		alert('You are now Logged Out');
-    	this.props.history.push(`/login`);
 	}
 
 	render() {
