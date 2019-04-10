@@ -18,7 +18,7 @@ class Api::MeasurementsController < ApplicationController
 	end
 
 	def show
-		render json: @medication
+		render json: @measurement
 	end
 
 	def destroy
