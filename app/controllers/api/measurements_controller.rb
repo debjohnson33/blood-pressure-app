@@ -1,20 +1,24 @@
 class Api::MeasurementsController < ApplicationController
 
-	#before_action :authenticate_user
-	before_action :set_user, only: [:index, :create, :destroy]
-	before_action :set_measurement, only: [:destroy]
+	before_action :authenticate_user
+	#before_action :set_user, only: [:index, :create, :destroy]
+	before_action :set_measurement, only: [:show, :update, :destroy]
 
 	def index
-		render json: @user.measurements, status: 200
+		render json: current_user.measurements, status: 200
 	end
 
 	def create
-		@measurement = @user.measurements.build(measurement_params)
-		if @measurement.save
+		@measurement = current_user.measurements.build(measurement_params)
+		if @measurement && @measurement.save
 			render json: @measurement, status: 201
 		else
 			render_errors_in_json
 		end
+	end
+
+	def show
+		render json: @medication
 	end
 
 	def destroy
@@ -24,16 +28,16 @@ class Api::MeasurementsController < ApplicationController
 
 	private
 
-	def set_user
-		@user = User.find_by(id: params[:user_id])
-		if !@user
-			render json: {
-				errors: {
-					messages: { user: "can't be found"}
-				}
-			}, status: 404
-		end
-	end
+	# def set_user
+	# 	@user = User.find_by(id: params[:user_id])
+	# 	if !@user
+	# 		render json: {
+	# 			errors: {
+	# 				messages: { user: "can't be found"}
+	# 			}
+	# 		}, status: 404
+	# 	end
+	# end
 
 	def measurement_params
 		params.require(:measurement).permit(:user_id, :systolic_bp, :diastolic_bp, :pulse, :date_time, :notes)
@@ -48,7 +52,7 @@ class Api::MeasurementsController < ApplicationController
 	end
 
 	def set_measurement
-		@measurement = @user.measurements.find_by(id: params[:id])
+		@measurement = current_user.measurements.find_by(id: params[:id])
 		if !@measurement
 			render json: {
 				errors: {
