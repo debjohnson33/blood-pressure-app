@@ -19,7 +19,11 @@ export const addMeasurements = measurement => {
 
 export const fetchMeasurements = (userId) => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/${userId}/measurements`)
+		return fetch(`${API_URL}/users/${userId}/measurements`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.token}`, 
+			},
+		})
 			.then(response => response.json())
 			.then(measurements => {
 				dispatch(measurementsFetchDataSuccess(measurements));
@@ -33,6 +37,7 @@ export const createMeasurement = (user_id, measurement) => {
 		return fetch(`${API_URL}/users/${user_id}/measurements`, {
 			method: 'POST',
 			headers: {
+				"Authorization": `Bearer ${localStorage.token}`,
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ measurement: measurement })
@@ -42,5 +47,6 @@ export const createMeasurement = (user_id, measurement) => {
 				dispatch(addMeasurements(measurement))
 				this.props.history.push(`${API_URL}/users/${user_id}/measurements`)
 			})
+			.catch(error => console.log(error))
 	}
 }
