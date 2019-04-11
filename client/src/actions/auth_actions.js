@@ -51,7 +51,7 @@ export const signupUser = (user) => {
 export const authenticate = (credentials) => {
     return dispatch => {
         dispatch(authRequest());
-        return fetch(`${API_URL}/tokens`, {
+        return fetch(`${API_URL}/user_token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
