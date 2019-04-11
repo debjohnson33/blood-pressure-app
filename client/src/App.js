@@ -15,14 +15,15 @@ import NavBar from './NavBar';
 class App extends Component {
 
   componentDidMount() {
-    const token = localStorage.token;
+    // const token = localStorage.token;
     
-    if (token) {
-      this.props.getUser(token)
-    }
+    // if (token) {
+    //   this.props.getUser(token)
+    // }
   }
 
   render() {
+    const {authenticated, user} = this.props;
     return (
         <Router>
           <div className="App">
@@ -43,8 +44,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    //user: state.auth,
-    //authenticated: state.auth.authenticated
+    user: state.auth.currentUser,
+    authenticated: state.auth.authenticated
   }
 }
 export default connect(mapStateToProps, { getUser })(App);

@@ -84,7 +84,7 @@ export const getUser = (credentials) => {
         return fetch(`${API_URL}/find_user`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.Token}`,
+                'Authorization': `Bearer ${localStorage.token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({user: credentials})
