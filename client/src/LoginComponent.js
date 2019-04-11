@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { authenticate, getUser } from './actions/auth_actions';
 
 class LoginComponent extends Component {
@@ -21,7 +22,7 @@ class LoginComponent extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		if (this.props.authenticate(this.state)) {
-			this.props.history.push("/users/:id/measurements")
+			this.props.history.push(`/users/${user.id}/measurements`)
 			window.alert("You're Logged In!")
 		} else {
 			window.alert("Sorry, email or password is incorrect. Try again.")				
@@ -70,4 +71,4 @@ const mapStateToProps = (state) => {
 	})
 }
 
-export default connect(mapStateToProps, {authenticate, getUser})(LoginComponent);
+export default withRouter(connect(mapStateToProps, {authenticate, getUser})(LoginComponent));
