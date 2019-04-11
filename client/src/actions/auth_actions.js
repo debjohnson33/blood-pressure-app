@@ -62,7 +62,7 @@ export const authenticate = (credentials) => {
             .then((response) => {
                 if (response.errors) {
                     throw Error(response.errors);
-                } else if (response.token) {
+                } else if (response.jwt) {
                     const token = response.jwt;
                     localStorage.setItem('token', token);
                     return getUser(credentials)
@@ -80,22 +80,22 @@ export const authenticate = (credentials) => {
 }
 
 export const getUser = (credentials) => {
-    return dispatch => {
-        return fetch(`${API_URL}/find_user`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({user: credentials})
+    const request = new Request(`${API_URL}/find_user`, {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': `Bearer ${localStorage.token}`,
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({user: credentials})
+    })
+    return fetch(request)
+        .then((res) => res.json())
+        .then(userJson => { return userJson })
+        .catch((error) => {
+            console.log(error)
+            localStorage.clear()
         })
-            .then((res) => res.json())
-            .then((response) => { return response })
-            .catch((error) => {
-                console.log(error)
-                localStorage.clear()
-            })
-    }
+
 }
 
 export const logout = () => {
