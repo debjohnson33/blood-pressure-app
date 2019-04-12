@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import Home from './Home';
+import UserProfile from './UserProfile';
 import MeasurementsPage from './MeasurementsPage';
 import MeasurementsForm from './MeasurementsForm';
 import LoginComponent from './LoginComponent';
@@ -30,6 +31,7 @@ class App extends Component {
             <NavBar />
             <Switch>
               <Route exact path='/' component={Home}/>
+              <Route exact path='/user_profile' component={UserProfile} />
               <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/signup' component={SignupComponent}/> 
               <Route exact path='/logout' component={LogoutComponent }/>
