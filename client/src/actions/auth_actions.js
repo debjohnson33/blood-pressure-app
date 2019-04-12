@@ -4,7 +4,7 @@ const API_URL = "http://localhost:3001/api";
 
 const authSuccess = (user, token) => {
     return {
-        type: 'USER_AUTHENTICATED',
+        type: 'AUTHENTICATION_SUCCESS',
         user: user,
         token: token
     }
