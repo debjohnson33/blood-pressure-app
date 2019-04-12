@@ -9,7 +9,6 @@ import MeasurementsPage from './MeasurementsPage';
 import MeasurementsForm from './MeasurementsForm';
 import LoginComponent from './LoginComponent';
 import SignupComponent from './SignupComponent';
-import LogoutComponent from './LogoutComponent';
 import { getUser } from './actions/auth_actions';
 import NavBar from './NavBar';
 
@@ -34,7 +33,6 @@ class App extends Component {
               <Route exact path='/user_profile' component={UserProfile} />
               <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/signup' component={SignupComponent}/> 
-              <Route exact path='/logout' component={LogoutComponent }/>
               <Route exact path='/users/:id/measurements' component={MeasurementsPage}/>
               <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/>            
             </Switch>          

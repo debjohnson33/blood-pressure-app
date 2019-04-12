@@ -1,5 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
+import { logout } from './actions/auth_actions';
 //import './Medication.css';
 
 const link = {
@@ -11,17 +13,28 @@ const link = {
 	color: 'white',
 }
 
-const Navbar = () => 
-	<div className="nav">
-		<br />
-		<NavLink to='/' exact style={link}>Home</NavLink>
+class Navbar extends Component {
+	handleLogout = (e) => {
+		this.props.logout();
+		this.props.history.push(`/`);
+		alert('You are now Logged Out');
+	}
 
-		<NavLink to='/login' exact style={link}>Login</NavLink>
+	render() {
+		return (
+			<div className="nav">
+				<br />
+				<NavLink to='/' exact style={link}>Home</NavLink>
+		
+				<NavLink to='/login' exact style={link}>Login</NavLink>
+		
+				<NavLink to='/signup' exact style={link}>Sign Up</NavLink>
+		
+				<NavLink to='' onClick={(e) => this.handleLogout(e) } style={link}>Log Out</NavLink>
+		
+			</div>
+		)
+	}
+} 
 
-		<NavLink to='/signup' exact style={link}>Sign Up</NavLink>
-
-		<NavLink to='/logout' exact style={link}>Log Out</NavLink>
-
-	</div>
-
-export default Navbar;
+export default withRouter(connect(null, {logout})(Navbar));

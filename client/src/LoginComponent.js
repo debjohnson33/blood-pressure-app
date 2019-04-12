@@ -22,7 +22,7 @@ class LoginComponent extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		if (this.props.authenticate(this.state)) {
-			//this.props.history.push(`/users/${user.id}/measurements`)
+			this.props.history.push('/user_profile')
 			window.alert("You're Logged In!")
 		} else {
 			window.alert("Sorry, email or password is incorrect. Try again.")				
