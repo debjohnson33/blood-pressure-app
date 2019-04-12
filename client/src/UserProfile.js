@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import MeasurementsPage from './MeasurementsPage';
+
 class UserProfile extends Component {
     // constructor(props) {
     //     super(props);
@@ -14,6 +16,7 @@ class UserProfile extends Component {
             <div>
 
                 <h2>{this.props.user.email}</h2>
+                <MeasurementsPage user={this.props.user}/>
             </div>
         )
     }
@@ -25,4 +28,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default connect(mapStateToProps, null)(UserProfile);
+export default connect(null, null)(UserProfile);

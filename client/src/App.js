@@ -33,7 +33,7 @@ class App extends Component {
               <Route exact path='/user_profile' render={() => <UserProfile user={user} /> } />
               <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/signup' component={SignupComponent}/> 
-              <Route exact path='/users/:id/measurements' component={MeasurementsPage}/>
+              <Route exact path='/users/:id/measurements' render={() => <MeasurementsPage user={user} /> }/>
               <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/>            
             </Switch>          
           </div>

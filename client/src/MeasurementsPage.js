@@ -17,16 +17,16 @@ class MeasurementsPage extends Component {
 		// console.log(result);
 		// this.setState({email: result.email, userId: result.id})
 		// console.log(result.id)
-		// this.props.fetchMeasurements(result.id);
+		this.props.fetchMeasurements(this.props.user.id);
 	}
 
 	render() {
-			const { measurements } = this.props;
+			const { user, measurements } = this.props;
 			console.log(measurements);
-			//const userId = parseInt(this.state.userId, 10);
+			const userId = parseInt(user.userId, 10);
 		return (
 			<div>
-				<h1>Measurements for {this.state.email}</h1>
+				<h1>Measurements for {this.props.user.email}</h1>
 				{/* <div>
 				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
 					<div>
@@ -43,6 +43,7 @@ class MeasurementsPage extends Component {
 
 const mapStateToProps = (state) => {
 	return ({
+		user: state.auth.currentUser,
 		measurements: state.measurements
 	});
 };
