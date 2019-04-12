@@ -1,7 +1,6 @@
 class Api::MeasurementsController < ApplicationController
 
 	before_action :authenticate_user
-	#before_action :set_user, only: [:index, :create, :destroy]
 	before_action :set_measurement, only: [:show, :update, :destroy]
 
 	def index
@@ -27,17 +26,6 @@ class Api::MeasurementsController < ApplicationController
 
 
 	private
-
-	# def set_user
-	# 	@user = User.find_by(id: params[:user_id])
-	# 	if !@user
-	# 		render json: {
-	# 			errors: {
-	# 				messages: { user: "can't be found"}
-	# 			}
-	# 		}, status: 404
-	# 	end
-	# end
 
 	def measurement_params
 		params.require(:measurement).permit(:user_id, :systolic_bp, :diastolic_bp, :pulse, :date_time, :notes)

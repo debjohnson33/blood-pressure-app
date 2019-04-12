@@ -6,9 +6,6 @@ Rails.application.routes.draw do
 		post 'user_token' => 'user_token#create'
 		get '/logout' => 'users#logout'
 		post '/find_user' => 'users#find_user'
-  	resources :users do
-  		resources :measurements
-  		resources :goals
-  	end
+  	resources :users, :measurements, :goals
   end
 end
