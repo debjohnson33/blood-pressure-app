@@ -27,7 +27,7 @@ class MeasurementsPage extends Component {
 			const userId = parseInt(user.userId, 10);
 			if (this.props.measurements.length > 0) {
 				renderMeasurements = this.props.measurements.map((measurement, index) => {
-					return <li key={index}>{measurement.id} - {measurement.systolic_bp} / {measurement.diastolic_bp}</li>
+					return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - {measurement.systolic_bp} / {measurement.diastolic_bp}</li>
 				});
 			} else {
 				return "No Measurements"
