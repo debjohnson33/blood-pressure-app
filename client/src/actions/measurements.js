@@ -17,9 +17,9 @@ export const addMeasurements = measurement => {
 	}
 }
 
-export const fetchMeasurements = (userId) => {
+export const fetchMeasurements = () => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/${userId}/measurements`, {
+		return fetch(`${API_URL}/measurements`, {
 			headers: {
 				"Authorization": `Bearer ${localStorage.token}`, 
 			},

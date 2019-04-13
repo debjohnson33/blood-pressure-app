@@ -17,16 +17,29 @@ class MeasurementsPage extends Component {
 		// console.log(result);
 		// this.setState({email: result.email, userId: result.id})
 		// console.log(result.id)
-		this.props.fetchMeasurements(this.props.user.id);
+		this.props.fetchMeasurements();
 	}
 
 	render() {
 			const { user, measurements } = this.props;
 			console.log(measurements);
+			let renderMeasurements;
 			const userId = parseInt(user.userId, 10);
+			if (this.props.measurements.length > 0) {
+				renderMeasurements = this.props.measurements.map((measurement, index) => {
+					return <li key={index}>{measurement.id} - {measurement.systolic_bp} / {measurement.diastolic_bp}</li>
+				});
+			} else {
+				return "No Measurements"
+			}
+			
 		return (
 			<div>
 				<h1>Measurements for {this.props.user.email}</h1>
+				<div>
+					<ul>{renderMeasurements}</ul>
+				</div>
+				
 				{/* <div>
 				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
 					<div>
