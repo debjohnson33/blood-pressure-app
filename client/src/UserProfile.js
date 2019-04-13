@@ -16,7 +16,7 @@ class UserProfile extends Component {
             <div>
 
                 <h2>{this.props.user.email}</h2>
-                <MeasurementsPage user={this.props.user}/>
+                <MeasurementsPage user={this.props.user} measurements={this.props.user.measurements}/>
             </div>
         )
     }
