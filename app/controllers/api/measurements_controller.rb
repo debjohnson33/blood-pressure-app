@@ -4,7 +4,8 @@ class Api::MeasurementsController < ApplicationController
 	before_action :set_measurement, only: [:show, :update, :destroy]
 
 	def index
-		render json: current_user.measurements, status: 200
+		@measurements = current_user.measurements
+		render json: @measurements, status: 200
 	end
 
 	def create
@@ -40,7 +41,7 @@ class Api::MeasurementsController < ApplicationController
 	end
 
 	def set_measurement
-		@measurement = current_user.measurements.find_by(id: params[:id])
+		@measurement = Measurement.find_by(id: params[:id])
 		if !@measurement
 			render json: {
 				errors: {
