@@ -17,10 +17,10 @@ class MeasurementsForm extends Component {
 	}
 
 	componentDidMount() {
-		let jwt = window.localStorage.getItem('jwt');
-		let result = jwtDecode(jwt);
-		console.log(result);
-		this.setState({email: result.email, userId: result.id})
+		// let jwt = window.localStorage.getItem('jwt');
+		// let result = jwtDecode(jwt);
+		// console.log(result);
+		// this.setState({email: result.email, userId: result.id})
 	}
 
 	handleOnChange = event => {
