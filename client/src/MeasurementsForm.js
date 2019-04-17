@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import { updateMeasurementsFormData } from './actions/measurementsForm';
@@ -10,9 +11,9 @@ import './react-datetime.css';
 
 class MeasurementsForm extends Component {
 
-	constructor() {
-		super();
-		this.state = {email: undefined, userId: undefined};
+	constructor(props) {
+		super(props);
+		this.state = {email: this.props.user.email, userId: this.props.userId};
 		this.handleDate = this.handleDate.bind(this);
 	}
 
@@ -106,11 +107,12 @@ class MeasurementsForm extends Component {
 
 const mapStateToProps = state => {
 	return {
-		measurementsFormData: state.measurementsFormData
+		measurementsFormData: state.measurementsFormData,
+		user: state.auth.currentUser
 	}
 }
 
-export default connect(mapStateToProps, { 
+export default withRouter(connect(mapStateToProps, { 
 	updateMeasurementsFormData,
 	createMeasurement
-})(MeasurementsForm);
+})(MeasurementsForm));
