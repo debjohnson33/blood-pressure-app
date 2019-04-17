@@ -12,7 +12,10 @@ class UserProfile extends Component {
 
                 <h2>{this.props.user.email}</h2>
                 <MeasurementsForm user={this.props.user} />
-                <MeasurementsPage user={this.props.user} measurements={this.props.user.measurements}/>
+                <MeasurementsPage 
+                    user={this.props.user} 
+                    measurements={this.props.user.measurements}
+                    userId={this.props.user.id}/>
             </div>
         )
     }
@@ -24,4 +27,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default connect(mapStateToProps, null)(UserProfile);
+export default connect(mapStateToProps, {})(UserProfile);

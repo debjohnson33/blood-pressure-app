@@ -13,15 +13,6 @@ import NavBar from './NavBar';
 
 class App extends Component {
 
-  componentDidMount() {
-    // const token = localStorage.token;
-    
-    // if (token) {
-    //   this.props.getUser(token)
-    // }
-
-  }
-
   render() {
     const {user} = this.props;
     return (
