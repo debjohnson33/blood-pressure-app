@@ -34,7 +34,7 @@ export const fetchMeasurements = () => {
 
 export const createMeasurement = (user_id, measurement) => {
 	return dispatch => {
-		return fetch(`${API_URL}/users/${user_id}/measurements`, {
+		return fetch(`${API_URL}/measurements`, {
 			method: 'POST',
 			headers: {
 				"Authorization": `Bearer ${localStorage.token}`,
@@ -45,7 +45,7 @@ export const createMeasurement = (user_id, measurement) => {
 			.then(response => response.json())
 			.then(measurement => {
 				dispatch(addMeasurements(measurement))
-				this.props.history.push(`${API_URL}/users/${user_id}/measurements`)
+				this.props.history.push(`${API_URL}/measurements`)
 			})
 			.catch(error => console.log(error))
 	}
