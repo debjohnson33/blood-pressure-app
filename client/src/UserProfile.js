@@ -5,12 +5,6 @@ import MeasurementsForm from './MeasurementsForm';
 import MeasurementsPage from './MeasurementsPage';
 
 class UserProfile extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         user: this.props.user
-    //     }
-    // }
 
     render() {
         return (
@@ -30,4 +24,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default connect(null, null)(UserProfile);
+export default connect(mapStateToProps, null)(UserProfile);
