@@ -15,7 +15,7 @@ class UserProfile extends Component {
                 <MeasurementsPage 
                     user={this.props.user} 
                     measurements={this.props.user.measurements}
-                    userId={this.props.user.id}/>
+                />
             </div>
         )
     }
