@@ -15,6 +15,7 @@ const link = {
 
 class Navbar extends Component {
 	handleLogout = (e) => {
+		e.preventDefault();
 		this.props.logout();
 		this.props.history.push(`/`);
 		alert('You are now Logged Out');
