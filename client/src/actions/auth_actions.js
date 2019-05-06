@@ -60,13 +60,9 @@ export const authenticate = (credentials) => {
         })
             .then(res => res.json())
             .then((response) => {
-                if (response.errors) {
-                    throw Error(response.errors);
-                } else if (response.jwt) {
-                    const token = response.jwt;
-                    localStorage.setItem('token', token);
-                    return getUser(credentials)
-                }
+                const token = response.jwt;
+                localStorage.setItem('token', token);
+                return getUser(credentials)
             }).then((user) => {
                 console.log(user)
                 dispatch(authSuccess(user, localStorage.token));
