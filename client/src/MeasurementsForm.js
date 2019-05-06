@@ -15,6 +15,7 @@ class MeasurementsForm extends Component {
 		super(props);
 		this.state = {email: this.props.user.email, userId: this.props.userId};
 		this.handleDate = this.handleDate.bind(this);
+		this.handleOnSubmit = this.handleOnSubmit.bind(this);
 	}
 
 	componentDidMount() {
@@ -43,6 +44,7 @@ class MeasurementsForm extends Component {
 	handleOnSubmit = event => {
 		event.preventDefault();
 		this.props.createMeasurement(this.state.userId, this.props.measurementsFormData);
+		this.props.history.push(`/users/${this.props.user.id}/measurements`)
 	}
 
 	render() {

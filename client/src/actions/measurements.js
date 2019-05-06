@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { BrowserRouter } from 'react-router-dom';
+import { resetMeasurementsForm } from './measurementsForm';
 
 const API_URL = "http://localhost:3001/api";
 
@@ -45,7 +46,7 @@ export const createMeasurement = (user_id, measurement) => {
 			.then(response => response.json())
 			.then(measurement => {
 				dispatch(addMeasurements(measurement))
-				this.props.history.push(`${API_URL}/measurements`)
+				dispatch(resetMeasurementsForm())
 			})
 			.catch(error => console.log(error))
 	}
