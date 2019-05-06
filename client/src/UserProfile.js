@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import MeasurementsForm from './MeasurementsForm';
-import MeasurementsPage from './MeasurementsPage';
 
 class UserProfile extends Component {
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.history.push(`users/${this.props.user.id}/measurements`)
+    } 
 
     render() {
         return (
             <div>
 
                 <h2>{this.props.user.email}</h2>
+                <p>{this.props.user.id}</p>
+                <button onClick={(e) => this.handleSubmit(e) }>To Measurements Page</button>
                 <MeasurementsForm user={this.props.user} />
-                <MeasurementsPage 
-                    user={this.props.user} 
-                    measurements={this.props.user.measurements}
-                />
             </div>
         )
     }
@@ -27,4 +30,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default connect(mapStateToProps, {})(UserProfile);
+export default withRouter(connect(mapStateToProps, {})(UserProfile));
