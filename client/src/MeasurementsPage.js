@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import { fetchMeasurements } from './actions/measurements';
@@ -20,18 +21,23 @@ class MeasurementsPage extends Component {
 		this.props.fetchMeasurements();
 	}
 
+	handleSubmit = (e) => {
+		e.preventDefault();
+		this.props.history.push('/user_profile');
+	}
+
 	render() {
-			const { user, measurements } = this.props;
-			console.log(measurements);
-			let renderMeasurements;
-			const userId = parseInt(user.userId, 10);
-			if (this.props.measurements.length > 0) {
-				renderMeasurements = this.props.measurements.map((measurement, index) => {
-					return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}</li>
-				});
-			} else {
-				return <p>No measurements for {this.props.user.email}</p>
-			}
+		const { user, measurements } = this.props;
+		console.log(measurements);
+		let renderMeasurements;
+		const userId = parseInt(user.userId, 10);
+		if (this.props.measurements.length > 0) {
+			renderMeasurements = this.props.measurements.map((measurement, index) => {
+				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}</li>
+			});
+		} else {
+			return <p>No measurements for {this.props.user.email}</p>
+		}
 			
 		return (
 			<div>
@@ -40,15 +46,7 @@ class MeasurementsPage extends Component {
 					<ul>{renderMeasurements}</ul>
 				</div>
 				
-				{/* <div>
-				{Object.keys(measurements).map(function(measurementName, measurementIndex) {
-					<div>
-						<p key={measurementIndex}>{measurementName}</p>
-						<p> {measurements[measurementName]} </p>
-					</div>
-				})
-				} 
-				</div> */}
+				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
 			</div>
 		)
 	}
@@ -61,4 +59,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default connect(mapStateToProps, { fetchMeasurements })(MeasurementsPage);
+export default withRouter(connect(mapStateToProps, { fetchMeasurements })(MeasurementsPage));
