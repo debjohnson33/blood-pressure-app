@@ -63,6 +63,9 @@ export const deleteMeasurement = (measurementId) => {
 	return dispatch => {
 		return fetch(`${API_URL}/measurements/${measurementId}`, {
 			method: 'DELETE',
+			headers: {
+				"Authorization": `Bearer ${localStorage.token}`, 
+			},
 		})
 			.then(response => response.json())
 			.then(measurement => {

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import { fetchMeasurements } from './actions/measurements';
+import { deleteMeasurement } from './actions/measurements';
 
 class MeasurementsPage extends Component {
 
@@ -18,6 +19,7 @@ class MeasurementsPage extends Component {
 		// console.log(result);
 		// this.setState({email: result.email, userId: result.id})
 		// console.log(result.id)
+		//console.log(this.props.nextProps.location.pathname)
 		this.props.fetchMeasurements();
 	}
 
@@ -67,4 +69,4 @@ const mapStateToProps = (state) => {
 	});
 };
 
-export default withRouter(connect(mapStateToProps, { fetchMeasurements })(MeasurementsPage));
+export default withRouter(connect(mapStateToProps, { fetchMeasurements, deleteMeasurement })(MeasurementsPage));
