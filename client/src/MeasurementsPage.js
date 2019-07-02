@@ -26,6 +26,11 @@ class MeasurementsPage extends Component {
 		this.props.history.push('/user_profile');
 	}
 
+	handleDelete = (e) => {
+		e.preventDefault();
+		console.log("Got here!");
+	}
+
 	render() {
 		const { user, measurements } = this.props;
 		console.log(measurements);
@@ -33,7 +38,7 @@ class MeasurementsPage extends Component {
 		const userId = parseInt(user.userId, 10);
 		if (this.props.measurements.length > 0) {
 			renderMeasurements = this.props.measurements.map((measurement, index) => {
-				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}</li>
+				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}   <button onClick={(e) => this.handleDelete(e)}>Delete</button></li>
 			});
 		} else {
 			return <p>No measurements for {this.props.user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
