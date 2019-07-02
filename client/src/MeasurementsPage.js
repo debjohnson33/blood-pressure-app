@@ -36,7 +36,8 @@ class MeasurementsPage extends Component {
 				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}</li>
 			});
 		} else {
-			return <p>No measurements for {this.props.user.email}</p>
+			return <p>No measurements for {this.props.user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
+			
 		}
 			
 		return (
