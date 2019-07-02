@@ -18,6 +18,13 @@ export const addMeasurements = measurement => {
 	}
 }
 
+export const destroyMeasurement = measurementId => {
+	return {
+		type: 'DELETE_MEASUREMENT_SUCCESS',
+		measurementId
+	}
+}
+
 export const fetchMeasurements = () => {
 	return dispatch => {
 		return fetch(`${API_URL}/measurements`, {
@@ -47,6 +54,19 @@ export const createMeasurement = (user_id, measurement) => {
 			.then(measurement => {
 				dispatch(addMeasurements(measurement))
 				dispatch(resetMeasurementsForm())
+			})
+			.catch(error => console.log(error))
+	}
+}
+
+export const deleteMeasurement = (measurementId) => {
+	return dispatch => {
+		return fetch(`${API_URL}/measurements/${measurementId}`, {
+			method: 'DELETE',
+		})
+			.then(response => response.json())
+			.then(measurement => {
+				dispatch(destroyMeasurement(measurementId))
 			})
 			.catch(error => console.log(error))
 	}
