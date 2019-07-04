@@ -68,7 +68,7 @@ export const deleteMeasurement = (measurementId) => {
 			},
 		})
 			.then(response => response.json())
-			.then(measurement => {
+			.then(() => {
 				dispatch(destroyMeasurement(measurementId))
 			})
 			.catch(error => console.log(error))

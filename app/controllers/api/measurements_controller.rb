@@ -23,6 +23,7 @@ class Api::MeasurementsController < ApplicationController
 
 	def destroy
 		@measurement.destroy
+		render json: @measurement, status: 200
 	end
 
 
