@@ -12,6 +12,7 @@ class LoginComponent extends Component {
 			password: "",
 			user: {}
 		}
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleChange(event) {
