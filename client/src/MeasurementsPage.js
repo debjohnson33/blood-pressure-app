@@ -11,6 +11,8 @@ class MeasurementsPage extends Component {
 	constructor() {
 		super();
 		this.state = {email: undefined, userId: undefined};
+		this.handleOnSubmit = this.handleOnSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentDidMount() {

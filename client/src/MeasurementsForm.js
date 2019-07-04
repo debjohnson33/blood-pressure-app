@@ -34,7 +34,6 @@ class MeasurementsForm extends Component {
 	}
 
 	handleDate(date) {
-		console.log(date._d);
 		const currentMeasurementsFormData = Object.assign({}, this.props.measurementsFormData, {
 			date_time: date._d
 		})
