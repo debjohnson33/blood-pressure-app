@@ -10,6 +10,7 @@ import MeasurementsForm from './MeasurementsForm';
 import LoginComponent from './LoginComponent';
 import SignupComponent from './SignupComponent';
 import NavBar from './NavBar';
+import GoalsPage from './GoalsPage';
 
 class App extends Component {
 

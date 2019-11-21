@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
+import GoalsPage from './GoalsPage';
 import { fetchMeasurements } from './actions/measurements';
 import { deleteMeasurement } from './actions/measurements';
 
@@ -61,7 +62,9 @@ class MeasurementsPage extends Component {
 				<div>
 					<ul>{renderMeasurements}</ul>
 				</div>
-				
+				<div>
+					<GoalsPage />
+				</div>
 				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
 			</div>
 		)
