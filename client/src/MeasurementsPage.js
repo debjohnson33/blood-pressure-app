@@ -24,6 +24,12 @@ class MeasurementsPage extends Component {
 		this.props.fetchMeasurements();
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.measurements !== prevProps.measurements) {
+			this.props.fetchMeasurements();
+		}
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.history.push('/user_profile');
