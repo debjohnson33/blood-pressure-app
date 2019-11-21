@@ -44,7 +44,6 @@ class MeasurementsPage extends Component {
 
 	render() {
 		const { user, measurements } = this.props;
-		console.log(measurements);
 		let renderMeasurements;
 		const userId = parseInt(user.userId, 10);
 		if (this.props.measurements.length > 0) {
