@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import GoalsPage from './GoalsPage';
 import { fetchMeasurements } from './actions/measurements';
 import { deleteMeasurement } from './actions/measurements';
+import { fetchGoals } from './actions/goals';
 
 class MeasurementsPage extends Component {
 
@@ -23,6 +24,7 @@ class MeasurementsPage extends Component {
 		// console.log(result.id)
 		//console.log(this.props.nextProps.location.pathname)
 		this.props.fetchMeasurements();
+		this.props.fetchGoals();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -44,7 +46,7 @@ class MeasurementsPage extends Component {
 	}
 
 	render() {
-		const { user, measurements } = this.props;
+		const { user, measurements, goals } = this.props;
 		let renderMeasurements;
 		const userId = parseInt(user.userId, 10);
 		if (this.props.measurements.length > 0) {
@@ -60,7 +62,7 @@ class MeasurementsPage extends Component {
 			<div>
 				<h1>Measurements for {this.props.user.email}</h1>
 				<div>
-					<GoalsPage />
+					<GoalsPage goals={goals} />
 				</div>
 				<div>
 					<ul>{renderMeasurements}</ul>
@@ -75,8 +77,9 @@ class MeasurementsPage extends Component {
 const mapStateToProps = (state) => {
 	return ({
 		user: state.auth.currentUser,
-		measurements: state.measurements
+		measurements: state.measurements,
+		goals: state.goals
 	});
 };
 
-export default withRouter(connect(mapStateToProps, { fetchMeasurements, deleteMeasurement })(MeasurementsPage));
+export default withRouter(connect(mapStateToProps, { fetchMeasurements, deleteMeasurement, fetchGoals })(MeasurementsPage));
