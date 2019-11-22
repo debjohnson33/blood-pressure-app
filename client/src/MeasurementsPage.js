@@ -66,7 +66,7 @@ class MeasurementsPage extends Component {
 			<div>
 				<h1>Measurements for {this.props.user.email}</h1>
 				<div>
-					<GoalsPage user={user} goals={renderGoals} />
+					<GoalsPage user={user} goals={goals} />
 				</div>
 				<div>
 					<ul>{renderMeasurements}</ul>
