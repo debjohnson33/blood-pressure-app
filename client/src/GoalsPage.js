@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
-const GoalsPage = (props) => {
+const GoalsPage = ({goals}) => {
 	return(
 		<div>
 			
-	          <h1 className="App-title">Goals Go Here!</h1>
-	        
+	        <h1 className="App-title">Goals:</h1>
+            <p>Sytolic: {goals.systolic_bp}</p>
+            <p>Diastolic: {goals.diastolic_bp}</p>
+            <p>Frequency: {goals.frequency}</p>
 	        <br />
-	        <br />
-	        <br />
+
 		</div>
 	)
 }
