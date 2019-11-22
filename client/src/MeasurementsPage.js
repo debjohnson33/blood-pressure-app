@@ -31,16 +31,14 @@ class MeasurementsPage extends Component {
 		if (this.props.user.measurements !== prevProps.user.measurements) {
 			this.props.fetchMeasurements();
 		}
+		if (this.props.user.goals !== prevProps.user.goals) {
+			this.props.fetchGoals();
+		}
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.history.push('/user_profile');
-	}
-
-	handleToGoalsFormSubmit = (e) => {
-		e.preventDefault();
-		this.props.history.push(`/users/${this.props.user.id}/goals/new`)
 	}
 
 	handleDelete = (e, measurementId) => {
@@ -63,19 +61,12 @@ class MeasurementsPage extends Component {
 			return <p>No measurements for {user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
 			
 		}
-
-		if (this.props.goals) {
-			renderGoals = goals;
-		} else {
-			return <p>No goals set for { user.email }  	<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
-			</p>
-		}
 			
 		return (
 			<div>
 				<h1>Measurements for {this.props.user.email}</h1>
 				<div>
-					<GoalsPage goals={renderGoals} />
+					<GoalsPage user={user} goals={renderGoals} />
 				</div>
 				<div>
 					<ul>{renderMeasurements}</ul>
