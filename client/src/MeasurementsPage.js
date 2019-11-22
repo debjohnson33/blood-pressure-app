@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 
 import GoalsPage from './GoalsPage';
 import { fetchMeasurements } from './actions/measurements';
@@ -41,6 +40,11 @@ class MeasurementsPage extends Component {
 		this.props.deleteMeasurement(measurementId);
 		this.props.history.push(`/users/${this.props.user.id}/measurements`)
 	}
+
+	handleToGoalsFormSubmit = (e) => {
+		e.preventDefault();
+		this.props.history.push(`/users/${this.props.user.id}/goals/new`)
+    }
 
 	render() {
 		const { user, measurements, goals } = this.props;
