@@ -53,7 +53,7 @@ export const createGoal = (user_id, goal) => {
 			.then(response => response.json())
 			.then(goal => {
 				dispatch(addGoals(goal))
-				dispatch(resetGoalsForm())
+			//	dispatch(resetGoalsForm())
 			})
 			.catch(error => console.log(error))
 	}
