@@ -5,6 +5,7 @@ import measurementsReducer from './reducers/measurementsReducer';
 import measurementsFormData from './reducers/measurementsFormData';
 import auth_reducer from './reducers/auth_reducer';
 import goalsReducer from './reducers/goalsReducer';
+import goalsFormData from './reducers/goalsFormData';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -12,7 +13,8 @@ const reducers = combineReducers({
 	auth: auth_reducer,
 	measurements: measurementsReducer,
 	measurementsFormData,
-	goals: goalsReducer
+	goals: goalsReducer,
+	goalsFormData
 })
 
 const middleware = [thunk];

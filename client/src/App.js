@@ -11,6 +11,7 @@ import LoginComponent from './LoginComponent';
 import SignupComponent from './SignupComponent';
 import NavBar from './NavBar';
 import GoalsPage from './GoalsPage';
+import GoalsForm from './GoalsForm';
 
 class App extends Component {
 
@@ -26,7 +27,8 @@ class App extends Component {
               <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/signup' component={SignupComponent}/> 
               <Route exact path='/users/:id/measurements' render={() => <MeasurementsPage user={user} /> }/>
-              <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/>            
+              <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/> 
+              <Route exact path='/users/:id/goals/new' component={GoalsForm} />           
             </Switch>          
           </div>
         </Router>
