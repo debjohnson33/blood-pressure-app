@@ -5,7 +5,7 @@ const GoalsPage = ({goals}) => {
 		<div>
 			
 	        <h1 className="App-title">Goals:</h1>
-            <p>Sytolic: {goals.systolic_bp}</p>
+            <p>Systolic: {goals.systolic_bp}</p>
             <p>Diastolic: {goals.diastolic_bp}</p>
             <p>Frequency: {goals.frequency}</p>
 	        <br />
