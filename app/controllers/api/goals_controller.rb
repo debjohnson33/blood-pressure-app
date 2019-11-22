@@ -1,11 +1,12 @@
 class Api::GoalsController < ApplicationController
 
-	before_action :set_user, only: [:index, :create, :update, :destroy]
+	before_action :authenticate_user
 	before_action :set_goal, only: [:update, :destroy]
 
 	#only need index to show the user goal from the 'has one' relationship
 	def index
-		render json: @user.goal, status: 200 
+		@goals = current_user.goal
+		render json: @goals, status: 200 
 	end
 
 	def create
