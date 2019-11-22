@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 
 import { updateMeasurementsFormData } from './actions/measurementsForm';
 import { createMeasurement } from './actions/measurements';
@@ -16,13 +15,6 @@ class MeasurementsForm extends Component {
 		this.state = {email: this.props.user.email, userId: this.props.userId};
 		this.handleDate = this.handleDate.bind(this);
 		this.handleOnSubmit = this.handleOnSubmit.bind(this);
-	}
-
-	componentDidMount() {
-		// let jwt = window.localStorage.getItem('jwt');
-		// let result = jwtDecode(jwt);
-		// console.log(result);
-		// this.setState({email: result.email, userId: result.id})
 	}
 
 	handleOnChange = event => {
