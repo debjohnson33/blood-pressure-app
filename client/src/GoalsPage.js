@@ -20,10 +20,8 @@ class GoalsPage extends Component {
     
     render () {
         const { user, measurements, goals } = this.props;
-        let renderGoals;
-        if (goals) {
-            renderGoals = goals;
-        } else {
+        
+        if (!goals) {
             return <p>No goals set 	<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
             </p>
         }
@@ -38,9 +36,7 @@ class GoalsPage extends Component {
 
             </div>
         )
-
-    }
-        
+    }      
 }
 
 export default withRouter(GoalsPage);
