@@ -9,7 +9,7 @@ class GoalsForm extends Component {
 
 	constructor(props) {
 		super(props);
-		//this.state = {email: this.props.user.email, userId: this.props.userId};
+		this.state = {userId: this.props.userId};
 		this.handleOnSubmit = this.handleOnSubmit.bind(this);
 	}
 
