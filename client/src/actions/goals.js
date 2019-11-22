@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-//import { resetGoalsForm } from './goalsForm';
+import { resetGoalsForm } from './goalsForm';
 
 const API_URL = "http://localhost:3001/api";
 
@@ -53,7 +53,7 @@ export const createGoal = (user_id, goal) => {
 			.then(response => response.json())
 			.then(goal => {
 				dispatch(addGoals(goal))
-			//	dispatch(resetGoalsForm())
+				dispatch(resetGoalsForm())
 			})
 			.catch(error => console.log(error))
 	}
