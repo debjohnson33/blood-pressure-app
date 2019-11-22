@@ -24,8 +24,13 @@ class GoalsForm extends Component {
 	handleOnSubmit = event => {
 		event.preventDefault();
 		this.props.createGoal(this.state.userId, this.props.goalsFormData);
-		this.props.history.push(`/users/${this.props.user.id}/measurements`)
-	}
+		this.props.history.push(`/users/${this.props.user.id}/measurements`);
+    }
+    
+    handleToMeasurements = event => {
+        event.preventDefault();
+        this.props.history.push(`/users/${this.props.user.id}/measurements`);
+    }
 
 	render() {
 
@@ -66,6 +71,7 @@ class GoalsForm extends Component {
 				</div>
 				<br />
 				<button type="submit">Add Goals</button>
+                <button onClick={(e) => this.handleToMeasurements(e) }>Back to Measurements Page</button>
 			</form>
 			</div>
 		)
