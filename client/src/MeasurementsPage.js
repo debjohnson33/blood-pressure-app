@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import GoalsPage from './GoalsPage';
+import MeasurementsChartComponent from './MeasurementsChartComponent';
 import { fetchMeasurements } from './actions/measurements';
 import { deleteMeasurement } from './actions/measurements';
 import { fetchGoals } from './actions/goals';
@@ -67,6 +68,9 @@ class MeasurementsPage extends Component {
 				</div>
 				<div>
 					<ul>{renderMeasurements}</ul>
+				</div>
+				<div>
+					<MeasurementsChartComponent measurements={measurements} goals={goals} />
 				</div>
 				
 				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
