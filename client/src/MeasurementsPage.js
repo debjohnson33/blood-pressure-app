@@ -26,7 +26,7 @@ class MeasurementsPage extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.measurements !== prevProps.measurements) {
+		if (this.props.user.measurements !== prevProps.user.measurements) {
 			this.props.fetchMeasurements();
 		}
 	}
@@ -52,7 +52,7 @@ class MeasurementsPage extends Component {
 				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}   <button onClick={(e) => this.handleDelete(e, measurement.id)}>Delete</button></li>
 			});
 		} else {
-			return <p>No measurements for {this.props.user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
+			return <p>No measurements for {user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
 			
 		}
 			
