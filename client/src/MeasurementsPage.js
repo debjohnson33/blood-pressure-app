@@ -38,6 +38,11 @@ class MeasurementsPage extends Component {
 		this.props.history.push('/user_profile');
 	}
 
+	handleToGoalsFormSubmit = (e) => {
+		e.preventDefault();
+		this.props.history.push(`/users/${this.props.user.id}/goals/new`)
+	}
+
 	handleDelete = (e, measurementId) => {
 		e.preventDefault();
 		console.log(measurementId);
@@ -48,6 +53,7 @@ class MeasurementsPage extends Component {
 	render() {
 		const { user, measurements, goals } = this.props;
 		let renderMeasurements;
+		let renderGoals;
 		const userId = parseInt(user.userId, 10);
 		if (this.props.measurements.length > 0) {
 			renderMeasurements = measurements.map((measurement, index) => {
@@ -57,18 +63,26 @@ class MeasurementsPage extends Component {
 			return <p>No measurements for {user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
 			
 		}
+
+		if (this.props.goals) {
+			renderGoals = goals;
+		} else {
+			return <p>No goals set for { user.email }  	<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
+			</p>
+		}
 			
 		return (
 			<div>
 				<h1>Measurements for {this.props.user.email}</h1>
 				<div>
-					<GoalsPage goals={goals} />
+					<GoalsPage goals={renderGoals} />
 				</div>
 				<div>
 					<ul>{renderMeasurements}</ul>
 				</div>
 				
 				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
+				<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> 
 			</div>
 		)
 	}
