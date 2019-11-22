@@ -6,8 +6,8 @@ const initialState = {
 export default (state = initialState, action) => {
 
 	switch(action.type) {
-		case 'UPDATED_DATA':
-			return action.measurementsFormData
+		case 'UPDATED_GOALS':
+			return action.goalsFormData
 		case 'RESET_GOALS_FORM':
 			return initialState;
 		default:

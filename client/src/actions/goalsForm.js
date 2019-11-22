@@ -1,6 +1,6 @@
 export const updateGoalsFormData = goalsFormData => {
 	return {
-		type: 'UPDATED_DATA',
+		type: 'UPDATED_GOALS',
 		goalsFormData
 	}
 }
