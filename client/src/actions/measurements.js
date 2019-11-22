@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { BrowserRouter } from 'react-router-dom';
+//import { BrowserRouter } from 'react-router-dom';
 import { resetMeasurementsForm } from './measurementsForm';
 
 const API_URL = "http://localhost:3001/api";
