@@ -10,7 +10,7 @@ class Api::GoalsController < ApplicationController
 	end
 
 	def create
-		@goal = @user.build_goal(goal_params)
+		@goal = current_user.build_goal(goal_params)
 		if @goal.save
 			render json: @goal, status: 201
 		else
@@ -27,7 +27,7 @@ class Api::GoalsController < ApplicationController
 	end
 
 	def destroy
-		@user.goal.destroy
+		current_user.goal.destroy
 		render json: 204
 	end
 
@@ -35,17 +35,6 @@ class Api::GoalsController < ApplicationController
 
 	def goal_params
 		params.require(:goal).permit(:systolic_bp, :diastolic_bp, :frequency)
-	end
-
-	def set_user
-		@user = User.find_by(id: params[:user_id])
-		if !@user
-			render json: {
-				errors: {
-					messages: { user: "can't be found"}
-				}
-			}, status: 404
-		end
 	end
 
 	def render_errors_in_json
@@ -57,7 +46,7 @@ class Api::GoalsController < ApplicationController
 	end
 
 	def set_goal
-		@goal = @user.goal
+		@goal = current_user.goal
 		if !@goal
 			render json: {
 				errors: {
