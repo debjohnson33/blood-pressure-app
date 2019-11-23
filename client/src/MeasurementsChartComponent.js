@@ -46,20 +46,23 @@ class MeasurementsChartComponent extends Component {
     render () {
         const { measurements, goals } = this.props;
         let systolic_bp = measurements.map((measurement) => {
-            return measurement.systolic_bp;
+            let epochDate = new Date(measurement.date_time).getTime() / 1000;
+            return [epochDate, measurement.systolic_bp];
         });
         let diastolic_bp = measurements.map((measurement) => {
-            return measurement.diastolic_bp;
+            let epochDate = new Date(measurement.date_time).getTime() / 1000;
+            return [epochDate, measurement.diastolic_bp];
         });
         let pulse = measurements.map((measurement) => {
-            return measurement.pulse;
+            let epochDate = new Date(measurement.date_time).getTime() / 1000;
+            return [epochDate, measurement.pulse];
         });
         let systolic_goal = goals.systolic_bp;
         let diastolic_goal = goals.diastolic_bp;
-        let date_time = measurements.map((measurement) => {
-            let formattedDate = dateFormat(measurement.date_time, 'mmm dd, yyyy  h:MM TT');
-            return formattedDate;
-        })
+        // let date = measurements.map((measurement) => {
+            
+        //     return epochDate;
+        // })
         return (
             <div>             
                 <HighchartsChart>
