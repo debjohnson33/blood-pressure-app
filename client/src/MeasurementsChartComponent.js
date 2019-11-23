@@ -41,21 +41,27 @@ yAxis.push({
 //     year: "%y"
 //   }
 // };
+const parseIsoLocal = (s) => {
+    let b = s.split(/\D/);
+    return new Date(b[0],b[1]-1,b[2],b[3],b[4],b[5],
+        ((b[6]||'')+'000').slice(0,3));
+}
 
 class MeasurementsChartComponent extends Component {
+    
     render () {
         const { measurements, goals } = this.props;
         let systolic_bp = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime() / 1000;
-            return [epochDate, measurement.systolic_bp];
+            let epochDate = parseIsoLocal(measurement.date_time);
+            return [+epochDate, measurement.systolic_bp];
         });
         let diastolic_bp = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime() / 1000;
-            return [epochDate, measurement.diastolic_bp];
+            let epochDate = parseIsoLocal(measurement.date_time);
+            return [+epochDate, measurement.diastolic_bp];
         });
         let pulse = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime() / 1000;
-            return [epochDate, measurement.pulse];
+            let epochDate = parseIsoLocal(measurement.date_time);
+            return [+epochDate, measurement.pulse];
         });
         let systolic_goal = goals.systolic_bp;
         let diastolic_goal = goals.diastolic_bp;
