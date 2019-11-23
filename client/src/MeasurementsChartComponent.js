@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Highcharts from 'highcharts';
+import dateFormat from 'dateformat';
 
 import {
   HighchartsChart,
@@ -18,13 +19,6 @@ import {
 const marker = {
     symbol: 'circle'
 }
-const dateFormat = {
-    hour: "%l %p",
-    day: "%b %e '%y",
-    week: "%b %e '%y",
-    month: "%b '%y",
-    year: "%y"
-  };
 
 let yAxis = [];
 yAxis.push({
@@ -37,17 +31,16 @@ yAxis.push({
     format: "{value}Wh"
   }
 });
-let xAxis = {
-  type: "datetime",
-  tickInterval: 4 * 3600 * 1000,
-  dateTimeLabelFormats: {
-    hour: "%l %p",
-    day: "%b %e '%y",
-    week: "%b %e '%y",
-    month: "%b '%y",
-    year: "%y"
-  }
-};
+// let xAxis = {
+//   type: "datetime",
+//   dateTimeLabelFormats: {
+//     hour: "%l %p",
+//     day: "%b %e '%y",
+//     week: "%b %e '%y",
+//     month: "%b '%y",
+//     year: "%y"
+//   }
+// };
 
 class MeasurementsChartComponent extends Component {
     render () {
@@ -63,7 +56,10 @@ class MeasurementsChartComponent extends Component {
         });
         let systolic_goal = goals.systolic_bp;
         let diastolic_goal = goals.diastolic_bp;
-
+        let date_time = measurements.map((measurement) => {
+            let formattedDate = dateFormat(measurement.date_time, 'mmm dd, yyyy  h:MM TT');
+            return formattedDate;
+        })
         return (
             <div>             
                 <HighchartsChart>
@@ -74,7 +70,7 @@ class MeasurementsChartComponent extends Component {
                         align="left"
                         verticalAlign="top"
                     />
-                    <XAxis {...xAxis} >
+                    <XAxis type="datetime" >
                         <XAxis.Title>Date/Time</XAxis.Title>
                     </XAxis>
                     <Tooltip shared={true} />
