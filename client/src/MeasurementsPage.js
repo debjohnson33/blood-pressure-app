@@ -53,7 +53,7 @@ class MeasurementsPage extends Component {
 		const userId = parseInt(user.userId, 10);
 		if (this.props.measurements.length > 0) {
 			renderMeasurements = measurements.map((measurement, index) => {
-				return <li style={{listStyleType: "none"}} key={index}>{measurement.id} - Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse}   <button onClick={(e) => this.handleDelete(e, measurement.id)}>Delete</button></li>
+				return <li style={{listStyleType: "none"}} key={index}>Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse} Notes: {measurement.notes}  <button onClick={(e) => this.handleDelete(e, measurement.id)}>Delete</button></li>
 			});
 		} else {
 			return <p>No measurements for {user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
