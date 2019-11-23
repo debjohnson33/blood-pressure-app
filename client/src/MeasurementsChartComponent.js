@@ -11,7 +11,8 @@ import {
  // LineSeries,
   SplineSeries,
   PlotLine,
-  Tooltip
+  Tooltip,
+  Legend
 } from 'react-jsx-highcharts';
 
 const marker = {
@@ -47,18 +48,6 @@ let xAxis = {
     year: "%y"
   }
 };
-let legend = {
-    enabled: false,
-    layout: "vertical",
-    align: "left",
-    verticalAlign: "top",
-    floating: true
-  };
-
-let tooltip = {
-    valueDecimals: 2,
-    shared: true
-};
 
 class MeasurementsChartComponent extends Component {
     render () {
@@ -80,6 +69,11 @@ class MeasurementsChartComponent extends Component {
                 <HighchartsChart>
                     <Chart />
                     <Title>Blood Pressure, Pulse, and Goals</Title>
+                    <Legend 
+                        layout="vertical"
+                        align="left"
+                        verticalAlign="top"
+                    />
                     <XAxis {...xAxis} >
                         <XAxis.Title>Date/Time</XAxis.Title>
                     </XAxis>
