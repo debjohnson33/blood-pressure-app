@@ -31,44 +31,26 @@ yAxis.push({
     format: "{value}Wh"
   }
 });
-// let xAxis = {
-//   type: "datetime",
-//   dateTimeLabelFormats: {
-//     hour: "%l %p",
-//     day: "%b %e '%y",
-//     week: "%b %e '%y",
-//     month: "%b '%y",
-//     year: "%y"
-//   }
-// };
-const parseIsoLocal = (s) => {
-    let b = s.split(/\D/);
-    return new Date(b[0],b[1]-1,b[2],b[3],b[4],b[5],
-        ((b[6]||'')+'000').slice(0,3));
-}
 
 class MeasurementsChartComponent extends Component {
     
     render () {
         const { measurements, goals } = this.props;
         let systolic_bp = measurements.map((measurement) => {
-            let epochDate = parseIsoLocal(measurement.date_time);
+            let epochDate = new Date(measurement.date_time).getTime();
             return [+epochDate, measurement.systolic_bp];
         });
         let diastolic_bp = measurements.map((measurement) => {
-            let epochDate = parseIsoLocal(measurement.date_time);
+            let epochDate = new Date(measurement.date_time).getTime();
             return [+epochDate, measurement.diastolic_bp];
         });
         let pulse = measurements.map((measurement) => {
-            let epochDate = parseIsoLocal(measurement.date_time);
+            let epochDate = new Date(measurement.date_time).getTime();
             return [+epochDate, measurement.pulse];
         });
         let systolic_goal = goals.systolic_bp;
         let diastolic_goal = goals.diastolic_bp;
-        // let date = measurements.map((measurement) => {
-            
-        //     return epochDate;
-        // })
+        
         return (
             <div>             
                 <HighchartsChart>
