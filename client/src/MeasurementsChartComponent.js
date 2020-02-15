@@ -37,15 +37,21 @@ class MeasurementsChartComponent extends Component {
     render () {
         const { measurements, goals } = this.props;
         let systolic_bp = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime();
+            let d = new Date(measurement.date_time);
+            let offSet = d.getTimezoneOffset(); // get offset to convert to local time
+            let epochDate = d.getTime() - (offSet * 60000); // offSet comes out in minutes so convert to milliseconds
             return [+epochDate, measurement.systolic_bp];
         });
         let diastolic_bp = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime();
+            let d = new Date(measurement.date_time);
+            let offSet = d.getTimezoneOffset(); // get offset to convert to local time
+            let epochDate = d.getTime() - (offSet * 60000); // offSet comes out in minutes so convert to milliseconds
             return [+epochDate, measurement.diastolic_bp];
         });
         let pulse = measurements.map((measurement) => {
-            let epochDate = new Date(measurement.date_time).getTime();
+            let d = new Date(measurement.date_time);
+            let offSet = d.getTimezoneOffset(); // get offset to convert to local time
+            let epochDate = d.getTime() - (offSet * 60000); // offSet comes out in minutes so convert to milliseconds
             return [+epochDate, measurement.pulse];
         });
         let systolic_goal = goals.systolic_bp;
