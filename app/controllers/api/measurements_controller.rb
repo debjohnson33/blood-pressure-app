@@ -21,6 +21,14 @@ class Api::MeasurementsController < ApplicationController
 		render json: @measurement
 	end
 
+	def update
+		if @measurement.update(measurement_params)
+			render json: @measurement
+		else
+			render_errors_in_json
+		end
+	end
+
 	def destroy
 		@measurement.destroy
 		render json: @measurement, status: 200
