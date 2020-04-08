@@ -28,6 +28,7 @@ class App extends Component {
               <Route exact path='/signup' component={SignupComponent}/> 
               <Route exact path='/users/:id/measurements' render={() => <MeasurementsPage user={user} /> }/>
               <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/> 
+              <Route exact path='/users/:id/measurement/edit' render={(props) => <MeasurementsForm {...props} /> } />
               <Route exact path='/users/:id/goals/new' component={GoalsForm} />           
             </Switch>          
           </div>
