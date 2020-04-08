@@ -69,19 +69,13 @@ export const createMeasurement = (user_id, measurement) => {
 export const updateMeasurement = (measurement) => {
 	const measurementId = measurement.id;
 	return dispatch => {
-		return fetch(`${API_URL}/measurements/${measurementId}`, {
-			user_id: measurement.user_id,
-			systolic_bp: measurement.systolic_bp,
-			diastolic_bp: measurement.systolic_bp,
-			pulse: measurement.pulse,
-			date_time: measurement.date_time,
-			notes: measurement.notes
-		},
+		return fetch(`${API_URL}/measurements/${measurementId}`,
 		{
 			method: 'PUT',
 			headers: {
 				"Authorization": `Bearer ${localStorage.token}`,
 			},
+			body: JSON.stringify(measurement),
 		})
 		.then(response => response.json())
 		.then(() => {
