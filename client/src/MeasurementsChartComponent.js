@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Highcharts from 'highcharts';
 import dateFormat from 'dateformat';
 
@@ -33,9 +34,9 @@ yAxis.push({
 });
 
 class MeasurementsChartComponent extends Component {
-    
+// ** How to get ?? measurements and goals to display in the chart? **
     render () {
-        const { measurements, goals } = this.props;
+        const { measurements, goals } = this.props.location;
         let systolic_bp = measurements.map((measurement) => {
             let d = new Date(measurement.date_time);
             let offSet = d.getTimezoneOffset(); // get offset to convert to local time
