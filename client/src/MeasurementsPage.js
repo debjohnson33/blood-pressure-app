@@ -71,10 +71,8 @@ class MeasurementsPage extends Component {
 				<div>
 					<ul>{renderMeasurements}</ul>
 				</div>
-				<div>
-					<MeasurementsChartComponent measurements={measurements} goals={goals} />
-				</div>
 				
+				<Link to={`/users/${measurement.user_id}/chart`}>Measurements Chart</Link>
 				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
 				<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> 
 			</div>
