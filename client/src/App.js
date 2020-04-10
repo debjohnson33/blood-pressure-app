@@ -17,7 +17,8 @@ import MeasurementsChartComponent from './MeasurementsChartComponent';
 class App extends Component {
 
   render() {
-    const {user} = this.props;
+    
+    const {user, measurements, goals} = this.props;
     return (
         <Router>
           <div className="App">
@@ -28,7 +29,7 @@ class App extends Component {
               <Route exact path='/login' component={LoginComponent}/>
               <Route exact path='/signup' component={SignupComponent}/> 
               <Route exact path='/users/:id/measurements' render={() => <MeasurementsPage user={user} /> }/>
-              <Route exact path='/users/:id/chart' render={() => <MeasurementsChartComponent measurements={measurements} goals={goals} /> } />
+              <Route exact path='/users/:id/chart' render={(props) => <MeasurementsChartComponent measurements={measurements} goals={goals} /> } />
               <Route exact path='/users/:id/measurements/new' component={MeasurementsForm}/> 
               <Route exact path='/users/:id/measurement/edit' render={(props) => <MeasurementsForm {...props} /> } />
               <Route exact path='/users/:id/goals/new' component={GoalsForm} />           
@@ -41,7 +42,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.currentUser,
+    user: state.auth.currentUser
   }
 }
 export default connect(mapStateToProps, {})(App);
