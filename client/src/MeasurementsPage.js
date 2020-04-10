@@ -11,8 +11,8 @@ import { fetchGoals } from './actions/goals';
 
 class MeasurementsPage extends Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {email: undefined, userId: undefined};
 		this.handleDelete = this.handleDelete.bind(this);
 	}
@@ -72,7 +72,12 @@ class MeasurementsPage extends Component {
 					<ul>{renderMeasurements}</ul>
 				</div>
 				
-				<Link to={`/users/${measurement.user_id}/chart`}>Measurements Chart</Link>
+				<Link to={
+					{pathname: `/users/${user.id}/chart`,
+					measurements: measurements,
+					goals: goals
+					}
+					}>Measurements Chart</Link>
 				<button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button>
 				<button onClick={(e) => this.handleToGoalsFormSubmit(e) }>Click Here to Add Your Goals</button> 
 			</div>
