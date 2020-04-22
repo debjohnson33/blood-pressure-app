@@ -34,6 +34,11 @@ class MeasurementsForm extends Component {
 
 	handleOnSubmit = event => {
 		event.preventDefault();
+		// take "editMode" boolean and do if statement
+		// if (editMode) { --> editMeasurement(...)}
+		// if not, use createMeasurement 
+		// if editMode use edit/update? Measuremrnt
+		// set default empty props to use in case it's a create it won't be undefined
 		this.props.createMeasurement(this.state.userId, this.props.measurementsFormData);
 		this.props.history.push(`/users/${this.props.user.id}/measurements`)
 	}
