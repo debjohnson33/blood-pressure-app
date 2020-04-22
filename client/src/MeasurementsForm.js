@@ -17,6 +17,9 @@ class MeasurementsForm extends Component {
 		this.handleOnSubmit = this.handleOnSubmit.bind(this);
 	}
 
+	componentDidMount () {
+		this.setState({editMode: this.props.history.location.customData})
+	}
 	handleOnChange = event => {
 		const { name, value } = event.target;
 		const currentMeasurementsFormData = Object.assign({}, this.props.measurementsFormData, {
@@ -46,7 +49,7 @@ class MeasurementsForm extends Component {
 	render() {
 
 		const  { systolic_bp, diastolic_bp, pulse, date_time, notes } = this.props.measurementsFormData;
-
+		console.log(this.state);
 		return (
 			<div>
 			<h4>Add Your Blood Pressure and Pulse: </h4>
