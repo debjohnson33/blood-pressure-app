@@ -55,7 +55,7 @@ class MeasurementsPage extends Component {
 		if (this.props.measurements.length > 0) {
 			renderMeasurements = measurements.map((measurement, index) => {
 				let formattedDate = dateFormat(measurement.date_time, 'mmm dd, yyyy  h:MM TT')
-				return <li style={{listStyleType: "none"}} key={index}>Date/Time: {formattedDate} Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse} Notes: {measurement.notes} <Link to={`/users/${measurement.user_id}/measurement/edit`}>Review or Edit</Link>  <button onClick={(e) => this.handleDelete(e, measurement.id)}>Delete</button></li>
+				return <li style={{listStyleType: "none"}} key={index}>Date/Time: {formattedDate} Blood Pressure: {measurement.systolic_bp} / {measurement.diastolic_bp} Pulse: {measurement.pulse} Notes: {measurement.notes} <Link to={{`/users/${measurement.user_id}/measurement/edit`, {editMode: true}}>Review or Edit</Link> <button onClick={(e) => this.handleDelete(e, measurement.id)}>Delete</button></li>
 			});
 		} else {
 			return <p>No measurements for {user.email}  <button onClick={(e) => this.handleSubmit(e) }>To User Profile Page</button></p>
