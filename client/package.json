@@ -9,7 +9,7 @@
     "highcharts": "^7.2.2",
     "isomorphic-fetch": "^2.2.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-datetime": "^2.16.3",
